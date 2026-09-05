@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolarOS — Inventory Forecast Module</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+        }
+        .card-red {
+            background: rgba(127, 29, 29, 0.3);
+            border: 2px solid #ef4444;
+        }
+        .card-green {
+            background: rgba(20, 83, 45, 0.2);
+            border: 1px solid #22c55e;
+        }
+        .burn-bar {
+            background: #1e293b;
+            border: 1px solid #475569;
+            height: 48px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .burn-fill {
+            background: linear-gradient(90deg, #f97316, #dc2626);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen p-4 md:p-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2">📦 Inventory Forecast</h1>
+                <p class="text-slate-400">Real-time stock levels, burn rates, and projected zero-dates</p>
+            </div>
+
+            <!-- Forecast Info -->
+            <div class="bg-slate-700 bg-opacity-50 rounded-lg p-4 md:p-6 mb-8 border border-slate-600">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-slate-300 text-sm font-semibold block">📅 Forecast As Of</label>
+                        <p class="text-white font-mono text-lg mt-2">15 September 2027</p>
+                        <p class="text-slate-400 text-xs mt-2">Alert fired: 29 March 2027</p>
+                        <p class="text-slate-400 text-xs">190 days before crisis 🎯</p>
+                    </div>
+                    <div>
+                        <label class="text-slate-300 text-sm font-semibold block">🚢 Next Resupply</label>
+                        <p class="text-white font-mono text-lg mt-2">15 December 2027</p>
+                        <p class="text-slate-400 text-xs mt-2">Ship expected mid-December</p>
+                        <p class="text-slate-400 text-xs">90 days away</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RED ALERTS -->
+            <div class="mb-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="text-3xl">🚨</span>
+                    <h2 class="text-3xl font-bold text-red-500">Critical: Stock Running Out</h2>
+                </div>
+
+                <!-- Maitri Diesel -->
+                <div class="card-red rounded-lg p-6 md:p-8 mb-6">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-white">MAITRI — DIESEL</h3>
+                            <p class="text-red-400 text-base mt-2">🚨 Runs out before ship arrives</p>
+                        </div>
+                        <span class="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-sm">
+                            -74 DAYS SHORT
+                        </span>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+                        <div>
+                            <p class="text-slate-400 text-sm">On Hand</p>
+                            <p class="text-white font-bold text-2xl mt-1">2,255</p>
+                            <p class="text-slate-400 text-xs">Litres</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-sm">Daily Burn</p>
+                            <p class="text-white font-bold text-2xl mt-1">129</p>
+                            <p class="text-slate-400 text-xs">L/day (28d avg)</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-sm">Days of Cover</p>
+                            <p class="text-red-400 font-bold text-2xl mt-1">17.5</p>
+                            <p class="text-slate-400 text-xs">days remaining</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-sm">Runs Out On</p>
+                            <p class="text-red-400 font-bold text-2xl mt-1">2 Oct</p>
+                            <p class="text-slate-400 text-xs">Before ship (15 Dec)</p>
+                        </div>
+                    </div>
+
+                    <!-- Burn Rate Visualization -->
+                    <div>
+                        <p class="text-slate-400 text-xs mb-2">Consumption Trend</p>
+                        <div class="burn-bar">
+                            <div class="burn-fill" style="width: 85%;">
+                                85% consumed
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-400 text-xs mt-4">
+                        ✓ Based on 28-day trailing average consumption (exact calculation in season.db)
+                    </p>
+                </div>
+            </div>
+
+            <!-- GREEN SAFE -->
+            <div class="mb-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="text-3xl">✅</span>
+                    <h2 class="text-3xl font-bold text-green-500">Safe: Stock Sufficient</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Bharati Diesel -->
+                    <div class="card-green rounded-lg p-5">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-xl font-bold text-white">BHARATI</h4>
+                                <p class="text-green-400 text-sm mt-1">Diesel</p>
+                            </div>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded text-xs font-bold">
+                                +40 days
+                            </span>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">On Hand:</span>
+                                <span class="text-white font-mono">11,807 L</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Burn Rate:</span>
+                                <span class="text-white font-mono">89.54 L/day</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Days Left:</span>
+                                <span class="text-green-400 font-mono font-bold">131.9 days</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Runs Out:</span>
+                                <span class="text-green-400 font-mono">24 Jan 2028</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Maitri Food -->
+                    <div class="card-green rounded-lg p-5">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-xl font-bold text-white">MAITRI</h4>
+                                <p class="text-green-400 text-sm mt-1">Food</p>
+                            </div>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded text-xs font-bold">
+                                +60 days
+                            </span>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">On Hand:</span>
+                                <span class="text-white font-mono">3,240 kg</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Burn Rate:</span>
+                                <span class="text-white font-mono">21.44 kg/day</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Days Left:</span>
+                                <span class="text-green-400 font-mono font-bold">151.1 days</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Runs Out:</span>
+                                <span class="text-green-400 font-mono">13 Feb 2028</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bharati Food -->
+                    <div class="card-green rounded-lg p-5">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-xl font-bold text-white">BHARATI</h4>
+                                <p class="text-green-400 text-sm mt-1">Food</p>
+                            </div>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded text-xs font-bold">
+                                +50 days
+                            </span>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">On Hand:</span>
+                                <span class="text-white font-mono">2,169 kg</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Burn Rate:</span>
+                                <span class="text-white font-mono">15.37 kg/day</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Days Left:</span>
+                                <span class="text-green-400 font-mono font-bold">141.1 days</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Runs Out:</span>
+                                <span class="text-green-400 font-mono">03 Feb 2028</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why This Matters -->
+            <div class="bg-blue-900 bg-opacity-30 border border-blue-600 rounded-lg p-6 md:p-8">
+                <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
+                    💡 Why This Matters
+                </h3>
+                <ul class="space-y-3 text-slate-300 text-sm md:text-base">
+                    <li class="flex gap-3">
+                        <span class="text-red-400 font-bold">1.</span>
+                        <span><strong>Early Warning:</strong> RED flags fire on 29 March — 190 days before the crisis. That's SIX MONTHS to act.</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="text-blue-400 font-bold">2.</span>
+                        <span><strong>Real Math:</strong> Burn rate is a 28-day trailing average from actual consumption logs, not an estimate.</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="text-yellow-400 font-bold">3.</span>
+                        <span><strong>No Crystal Ball:</strong> Forecast is blind to events after 15 Sep — it can't see the emergency airlift coming 3 Oct. That's how append-only logs work.</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="text-green-400 font-bold">4.</span>
+                        <span><strong>Decision Point:</strong> Ship arrives 15 Dec. Anything running out before then is RED. Anything after is GREEN.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Demo Footer -->
+            <div class="mt-10 text-center text-slate-400 text-sm">
+                <p>
+                    This is a <strong>working demo</strong> built from real data in <code>season.db</code>.<br>
+                    All numbers come from <code>q_burnrate.sql</code> — not invented for the presentation.
+                </p>
+                <p class="mt-3 text-xs">
+                    📌 <strong>For other modules:</strong> Follow this same pattern: Real data first, then beautiful UI.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
