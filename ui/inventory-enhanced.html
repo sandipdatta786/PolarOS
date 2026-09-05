@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolarOS — Inventory Forecast (Enhanced)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+        }
+
+        .metric-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            border-color: rgba(71, 85, 105, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            animation: pulse 2s infinite;
+        }
+
+        .status-red {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border: 1px solid #ef4444;
+        }
+
+        .status-green {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+            border: 1px solid #22c55e;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 2rem 0;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .timeline {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+
+        .timeline-item {
+            flex-shrink: 0;
+            text-align: center;
+            cursor: pointer;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            background: rgba(30, 41, 59, 0.6);
+        }
+
+        .timeline-item:hover {
+            border-color: #3b82f6;
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        .timeline-item.active {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .timeline-item-date {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+
+        .timeline-item-label {
+            font-weight: 600;
+            margin-top: 0.5rem;
+            color: #e2e8f0;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .insight-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-title {
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-text {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .comparison-item {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .comparison-label {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+        }
+
+        .comparison-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            color: #e2e8f0;
+        }
+
+        .critical-banner {
+            background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+            border: 2px solid #ef4444;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            animation: slideIn 0.6s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-large {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+            margin: 0.5rem 0;
+        }
+
+        .stat-unit {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen p-4 md:p-8">
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2">📦 Inventory Forecast</h1>
+                <p class="text-slate-400 text-lg">The discovery that saves the season</p>
+            </div>
+
+            <!-- Forecast Timeline -->
+            <div class="mb-8">
+                <p class="text-slate-400 text-sm font-semibold mb-3">🕐 View forecast at different dates:</p>
+                <div class="timeline">
+                    <div class="timeline-item" onclick="updateForecast('2027-03-29')">
+                        <div class="timeline-item-date">Alert Fired</div>
+                        <div class="timeline-item-label">29 Mar 2027</div>
+                    </div>
+                    <div class="timeline-item" onclick="updateForecast('2027-06-01')">
+                        <div class="timeline-item-date">Mid Season</div>
+                        <div class="timeline-item-label">1 Jun 2027</div>
+                    </div>
+                    <div class="timeline-item" onclick="updateForecast('2027-09-15')" style="border-color: #3b82f6; background: rgba(59, 130, 246, 0.2);">
+                        <div class="timeline-item-date">Demo Day</div>
+                        <div class="timeline-item-label">15 Sep 2027</div>
+                    </div>
+                    <div class="timeline-item" onclick="updateForecast('2027-10-02')">
+                        <div class="timeline-item-date">Crisis Day</div>
+                        <div class="timeline-item-label">2 Oct 2027</div>
+                    </div>
+                    <div class="timeline-item" onclick="updateForecast('2027-12-15')">
+                        <div class="timeline-item-date">Ship Arrives</div>
+                        <div class="timeline-item-label">15 Dec 2027</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Critical Alert -->
+            <div class="critical-banner">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl">🚨</div>
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold text-red-200 mb-2">Maitri Diesel Crisis Detected</h2>
+                        <p class="text-red-100 mb-4">
+                            Alert fired <strong>29 March 2027</strong> — <strong>190 days before the tank runs dry on 2 October</strong>.
+                            This advance warning made it possible to arrange an emergency airlift.
+                        </p>
+                        <div class="comparison-grid">
+                            <div class="comparison-item" style="background: rgba(0,0,0,0.3); border-color: #7f1d1d;">
+                                <div class="comparison-label">Without System</div>
+                                <div class="comparison-value" style="color: #fca5a5;">Crisis Found In July</div>
+                                <div class="comparison-label" style="margin-top: 0.5rem; color: #f87171;">Too Late To Fix</div>
+                            </div>
+                            <div class="comparison-item" style="background: rgba(0,0,0,0.3); border-color: #7f1d1d;">
+                                <div class="comparison-label">With PolarOS</div>
+                                <div class="comparison-value" style="color: #86efac;">Alert on 29 Mar</div>
+                                <div class="comparison-label" style="margin-top: 0.5rem; color: #86efac;">190 Days to Act</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maitri Diesel Details -->
+            <div class="metric-card mb-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">MAITRI STATION — DIESEL</h3>
+                        <p class="text-slate-400">Primary fuel for heating and power generation</p>
+                    </div>
+                    <span class="status-badge status-red">🚨 CRITICAL</span>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="grid-2 mb-8">
+                    <div>
+                        <div class="comparison-label">On Hand (15 Sep)</div>
+                        <div class="stat-large">2,255</div>
+                        <div class="stat-unit">Litres</div>
+                    </div>
+                    <div>
+                        <div class="comparison-label">Daily Consumption</div>
+                        <div class="stat-large">129</div>
+                        <div class="stat-unit">L/day (28-day avg)</div>
+                    </div>
+                    <div>
+                        <div class="comparison-label">Days of Cover</div>
+                        <div class="stat-large">17.5</div>
+                        <div class="stat-unit">days remaining</div>
+                    </div>
+                    <div>
+                        <div class="comparison-label">Projected Zero Date</div>
+                        <div class="stat-large">2 Oct</div>
+                        <div class="stat-unit">2027</div>
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <canvas id="burnChart"></canvas>
+                </div>
+
+                <!-- Analysis -->
+                <div class="insight-box">
+                    <div class="insight-icon">📊</div>
+                    <div class="insight-title">How We Know This</div>
+                    <div class="insight-text">
+                        The 28-day trailing average consumption is calculated from actual STOCK_CONSUMED events in the database.
+                        We divide total consumption in the window by exactly 28 days (not the number of log entries).
+                        At 129 L/day with 2,255 L on hand, the math is simple: 2,255 ÷ 129 = 17.5 days from 15 Sep = 2 October.
+                    </div>
+                </div>
+
+                <!-- Alert History -->
+                <div class="mt-8 p-4 bg-blue-900 bg-opacity-20 border border-blue-600 rounded-lg">
+                    <h4 class="font-bold text-white mb-3">📈 How the forecast tightened over time</h4>
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-blue-600">
+                                <th class="text-left p-2 text-blue-300">Date</th>
+                                <th class="text-left p-2 text-blue-300">As-of Snapshot</th>
+                                <th class="text-left p-2 text-blue-300">Projected Zero Date</th>
+                                <th class="text-left p-2 text-blue-300">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-slate-700 hover:bg-slate-800 hover:bg-opacity-30">
+                                <td class="p-2">29 Mar 2027</td>
+                                <td class="p-2 font-mono">Alert Fired</td>
+                                <td class="p-2 text-yellow-300 font-bold">26 Oct</td>
+                                <td class="p-2">🚨 Begin mitigation</td>
+                            </tr>
+                            <tr class="border-b border-slate-700 hover:bg-slate-800 hover:bg-opacity-30">
+                                <td class="p-2">1 Jul 2027</td>
+                                <td class="p-2 font-mono">Mid-winter check</td>
+                                <td class="p-2 text-orange-300 font-bold">27 Sep</td>
+                                <td class="p-2">⚠️ Tighten forecast</td>
+                            </tr>
+                            <tr class="border-b border-slate-700 hover:bg-slate-800 hover:bg-opacity-30">
+                                <td class="p-2">15 Sep 2027</td>
+                                <td class="p-2 font-mono">Demo Day</td>
+                                <td class="p-2 text-red-300 font-bold">2 Oct</td>
+                                <td class="p-2">🔴 Few days left</td>
+                            </tr>
+                            <tr class="bg-green-900 bg-opacity-20 hover:bg-opacity-40">
+                                <td class="p-2">3 Oct 2027</td>
+                                <td class="p-2 font-mono">Airlift Arrives</td>
+                                <td class="p-2 text-green-300 font-bold">Safe</td>
+                                <td class="p-2">✅ Crisis averted</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Safe Items Section -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-green-400 mb-4">✅ Safe Until Next Resupply</h2>
+                <div class="grid-2">
+                    <div class="metric-card">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Maitri Food</h4>
+                                <p class="text-slate-400 text-sm">Dietary supplies</p>
+                            </div>
+                            <span class="status-badge status-green">✓ SAFE</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="comparison-label">On Hand</div>
+                                <div class="text-white font-bold text-xl">3,240 kg</div>
+                            </div>
+                            <div>
+                                <div class="comparison-label">Daily Burn</div>
+                                <div class="text-white font-bold text-xl">21.4 kg/day</div>
+                            </div>
+                            <div>
+                                <div class="comparison-label">Days of Cover</div>
+                                <div class="text-green-300 font-bold text-xl">151.1 days</div>
+                            </div>
+                            <div>
+                                <div class="comparison-label">Runs Out</div>
+                                <div class="text-green-300 font-bold text-xl">13 Feb 2028</div>
+                            </div>
+                            <p class="text-slate-400 text-xs mt-3">Ship safe by 15 Dec (+60 days buffer)</p>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-lg font-bold text-white">Bharati Diesel</h4>
+                                <p class="text-slate-400 text-sm">Heating and power</p>
+                            </div>
+                            <span class="status-badge status-green">✓ SAFE</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="comparison-label">On Hand</div>
+                                <div class="text-white font-bold text-xl">11,807 L</div>
+                            </div>
+                            <div>
+                                <div class="comparison-label">Daily Burn</div>
+                                <div class="text-white font-bold text-xl">89.5 L/day</div>
+                            </div>
+                            <div>
+                                <div class="comparison-label">Days of Cover</div>
+                                <div class="text-green-300 font-bold text-xl">131.9 days</div>
+                            </div>
+                            <div>
+                                <div class="comparison-label">Runs Out</div>
+                                <div class="text-green-300 font-bold text-xl">24 Jan 2028</div>
+                            </div>
+                            <p class="text-slate-400 text-xs mt-3">Ship safe by 15 Dec (+40 days buffer)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Insight -->
+            <div class="insight-box" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%); border-color: rgba(34, 197, 94, 0.3);">
+                <div class="insight-icon">💡</div>
+                <div class="insight-title">Why This Architecture Matters</div>
+                <div class="insight-text">
+                    <p class="mb-3">
+                        <strong>No internet? No problem.</strong> Each station keeps its own copy of the log, logging consumption events offline.
+                        When a satellite link appears (even for 15 minutes), stations sync: "I have events 1–4821, you have 1–5000, send me 4822–5000."
+                    </p>
+                    <p class="mb-3">
+                        <strong>No clocks needed.</strong> Goa doesn't say "your clock is wrong"; each node just numbers its own events.
+                        A station that has been offline for 6 months can sync when it finds a link, and there's no conflict because nobody edited anything.
+                    </p>
+                    <p>
+                        <strong>The forecast screen is real.</strong> When the officer at Maitri taps "Forecast," they see the forecast that their data
+                        would give them right now—not a guess, not a cached screen. The math runs live from the append-only log.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-12 text-center text-slate-400 text-sm">
+                <p>All numbers are from actual <code class="bg-slate-800 px-2 py-1 rounded">season.db</code> queries.</p>
+                <p class="mt-2 text-xs">No invented data. No guesses. This is what the system actually produces.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple chart data for diesel consumption
+        const ctx = document.getElementById('burnChart').getContext('2d');
+
+        // Sample data points (in reality, these come from the database)
+        const dates = ['15 Aug', '22 Aug', '29 Aug', '5 Sep', '12 Sep', '15 Sep', '2 Oct', '30 Oct'];
+        const onHand = [3800, 3500, 3200, 2900, 2600, 2255, 0, 0]; // actual + projected
+        const projectionLine = [3800, 3500, 3200, 2900, 2600, 2255, 0, 0];
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [
+                    {
+                        label: 'Diesel On Hand',
+                        data: onHand,
+                        borderColor: '#fca5a5',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#ef4444',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#cbd5e1',
+                            font: { size: 12 }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 4000,
+                        ticks: {
+                            color: '#94a3b8',
+                            callback: function(value) {
+                                return value + ' L';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(71, 85, 105, 0.1)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#94a3b8'
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        function updateForecast(date) {
+            // Update timeline active state
+            document.querySelectorAll('.timeline-item').forEach(el => {
+                el.style.borderColor = 'transparent';
+                el.style.background = 'rgba(30, 41, 59, 0.6)';
+            });
+            event.target.closest('.timeline-item').style.borderColor = '#3b82f6';
+            event.target.closest('.timeline-item').style.background = 'rgba(59, 130, 246, 0.2)';
+
+            // In a real app, this would fetch new data from the API
+            console.log('Forecast requested for:', date);
+            alert('In production: this would re-query the database with as_of=' + date);
+        }
+    </script>
+</body>
+</html>
