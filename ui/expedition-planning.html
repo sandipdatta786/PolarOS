@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolarOS — Expedition Planning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+        }
+
+        .summary-banner {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border: 2px solid #22c55e;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            animation: slideIn 0.6s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .summary-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #22c55e;
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .transport-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .transport-card:hover {
+            border-color: rgba(71, 85, 105, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .transport-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .transport-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 0.5rem;
+        }
+
+        .transport-meta {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .capacity-bar {
+            width: 100%;
+            height: 24px;
+            background: rgba(71, 85, 105, 0.2);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .capacity-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: width 0.5s ease;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .stat-item {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            color: #e2e8f0;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 0.25rem;
+        }
+
+        .unplaced-section {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border: 2px solid #ef4444;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .unplaced-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fca5a5;
+            margin-bottom: 1rem;
+        }
+
+        .unplaced-item {
+            background: rgba(30, 41, 59, 0.8);
+            border-left: 3px solid #ef4444;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+        }
+
+        .item-id {
+            font-weight: 700;
+            color: #fca5a5;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .spec-item {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .spec-label {
+            color: #94a3b8;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .spec-value {
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+
+        .diagnosis {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .diagnosis strong {
+            color: #93c5fd;
+        }
+
+        .fix-options {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 3px solid #22c55e;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .fix-options strong {
+            color: #86efac;
+        }
+
+        .constraint-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .constraint-item {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .constraint-code {
+            font-family: 'Monaco', monospace;
+            color: #93c5fd;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .constraint-desc {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        .success-message {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid #22c55e;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #86efac;
+            text-align: center;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-6xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-5xl font-bold mb-2">🚀 Expedition Planning</h1>
+            <p class="text-slate-400">Capacity solver: assigning 400 items to 3 transport modes without breaking any rule</p>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-banner">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="text-slate-400 text-sm mb-2">MANIFEST SOLUTION</p>
+                    <div>
+                        <span class="summary-number">397</span>
+                        <span class="text-slate-400"> of 400 items placed</span>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-slate-400 text-sm mb-2">DISCOVERY DATE</p>
+                    <p class="text-2xl font-bold text-slate-300">September 2027<br><span class="text-sm text-slate-400">5 months before season</span></p>
+                </div>
+            </div>
+            <p class="text-slate-300 mt-4">
+                ✅ Three items cannot make this season. Flagged now, not discovered on the ice in January.
+            </p>
+        </div>
+
+        <!-- Transport Modes -->
+        <h2 class="text-3xl font-bold mb-6">Transport Capacity & Assignment</h2>
+        <div class="transport-grid">
+            <!-- SHIP -->
+            <div class="transport-card">
+                <div class="transport-icon">🚢</div>
+                <div class="transport-title">Ship (SHIP-M)</div>
+                <div class="transport-meta">Late December arrival at Maitri</div>
+
+                <p class="text-slate-400 text-sm mb-3">Capacity</p>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 68%;">68% Full</div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-label">Weight</div>
+                        <div class="stat-value">135,000 kg</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Capacity</div>
+                        <div class="stat-value">200,000 kg</div>
+                    </div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-label">Items</div>
+                        <div class="stat-value">289</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Hazardous</div>
+                        <div class="stat-value">32 items</div>
+                    </div>
+                </div>
+
+                <div class="success-message">
+                    ✓ Safe capacity. All hazardous items fit.
+                </div>
+            </div>
+
+            <!-- BASLER FLIGHTS -->
+            <div class="transport-card">
+                <div class="transport-icon">✈️</div>
+                <div class="transport-title">Basler Aircraft (4 flights)</div>
+                <div class="transport-meta">Nov–Jan, max 1,800 kg per flight (incl. passengers)</div>
+
+                <p class="text-slate-400 text-sm mb-3">Total Capacity</p>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 95%;">95% Full</div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-label">Weight</div>
+                        <div class="stat-value">6,840 kg</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Capacity</div>
+                        <div class="stat-value">7,200 kg</div>
+                    </div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-label">Items</div>
+                        <div class="stat-value">108</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">No Hazmat</div>
+                        <div class="stat-value">108 items</div>
+                    </div>
+                </div>
+
+                <div class="success-message">
+                    ✓ Flights fully utilized. Urgent/light items optimized.
+                </div>
+            </div>
+
+            <!-- HELICOPTER -->
+            <div class="transport-card">
+                <div class="transport-icon">🚁</div>
+                <div class="transport-title">Ship Helicopter</div>
+                <div class="transport-meta">During ship anchorage (Dec–Jan)</div>
+
+                <p class="text-slate-400 text-sm mb-3">Capacity</p>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" style="width: 42%;">42% Full</div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-label">Weight</div>
+                        <div class="stat-value">2,100 kg</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Capacity</div>
+                        <div class="stat-value">5,000 kg</div>
+                    </div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-label">Items</div>
+                        <div class="stat-value">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Reserved</div>
+                        <div class="stat-value">Contingency</div>
+                    </div>
+                </div>
+
+                <div class="success-message">
+                    ✓ Held for emergencies / last-minute needs.
+                </div>
+            </div>
+        </div>
+
+        <!-- Constraints -->
+        <h2 class="text-2xl font-bold mb-6 mt-8">Optimization Constraints (C1–C7)</h2>
+        <div class="constraint-legend">
+            <div class="constraint-item">
+                <div class="constraint-code">C1: One Home</div>
+                <div class="constraint-desc">Every item assigned to exactly one leg (or UNPLACED)</div>
+            </div>
+            <div class="constraint-item">
+                <div class="constraint-code">C2: Weight Limit</div>
+                <div class="constraint-desc">Sum of weights on a leg ≤ leg capacity</div>
+            </div>
+            <div class="constraint-item">
+                <div class="constraint-code">C3: Volume Limit</div>
+                <div class="constraint-desc">Sum of volumes on a leg ≤ leg capacity</div>
+            </div>
+            <div class="constraint-item">
+                <div class="constraint-code">C4: Hazmat Rules</div>
+                <div class="constraint-desc">Hazardous items only on ship (flights can't carry)</div>
+            </div>
+            <div class="constraint-item">
+                <div class="constraint-code">C5: Destination</div>
+                <div class="constraint-desc">Leg must arrive at item's destination station</div>
+            </div>
+            <div class="constraint-item">
+                <div class="constraint-code">C6: Deadline</div>
+                <div class="constraint-desc">Leg arrival date ≤ item needed-by date</div>
+            </div>
+            <div class="constraint-item">
+                <div class="constraint-code">C7: Heavy Cargo</div>
+                <div class="constraint-desc">Items >500kg or >2m³ ship-only (no flights)</div>
+            </div>
+        </div>
+
+        <!-- Unplaced Items -->
+        <div class="unplaced-section">
+            <div class="unplaced-title">3 Items Cannot Make This Season</div>
+            <p class="text-red-200 mb-4">
+                These items are flagged in September. Solutions exist—source locally, defer to next year, or arrange additional capacity.
+                The solver found the optimal assignment for what IS possible, and named exactly what ISN'T.
+            </p>
+
+            <!-- Item 1 -->
+            <div class="unplaced-item">
+                <div class="item-id">OZN-114: Diesel Generator 150kW</div>
+                <div class="item-specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Weight</div>
+                        <div class="spec-value">850 kg</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Needed By</div>
+                        <div class="spec-value">5 Jan</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Destination</div>
+                        <div class="spec-value">Bharati</div>
+                    </div>
+                </div>
+
+                <div class="diagnosis">
+                    <strong>❌ Violation of C7 (Heavy Items):</strong> 850 kg exceeds the 500 kg ship-only threshold.
+                    This item MUST go by ship, not flights.
+                    <br><br>
+                    <strong>❌ Violation of C6 (Deadline):</strong> Ship arrives Bharati mid-January.
+                    Item needed by 5 January—too late.
+                </div>
+
+                <div class="fix-options">
+                    <strong>✅ Options:</strong>
+                    <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                        <li>• Charter emergency flight before 5 Jan (expensive)</li>
+                        <li>• Defer to next season (station runs on backup diesel until Feb)</li>
+                        <li>• Source locally in Antarctica (not viable)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="unplaced-item">
+                <div class="item-id">MED-087: Surgical Suite (Sterilizer + Parts)</div>
+                <div class="item-specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Weight</div>
+                        <div class="spec-value">1,200 kg</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Needed By</div>
+                        <div class="spec-value">2 Jan</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Destination</div>
+                        <div class="spec-value">Maitri</div>
+                    </div>
+                </div>
+
+                <div class="diagnosis">
+                    <strong>❌ Violation of C7 (Heavy Items):</strong> 1,200 kg far exceeds 500 kg threshold.
+                    Must ship.
+                    <br><br>
+                    <strong>❌ Violation of C6 (Deadline):</strong> Ship arrives Maitri 27 Dec.
+                    Item needed 2 Jan—arrives 5 days late (acceptable), but the part inventory is insufficient until then.
+                </div>
+
+                <div class="fix-options">
+                    <strong>✅ Options:</strong>
+                    <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                        <li>• Postpone medical procedure to late December or defer to January post-arrival</li>
+                        <li>• Reduce scope: send sterilizer without full surgical suite</li>
+                        <li>• Ship separate in November (different vessel, negotiate charter)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="unplaced-item">
+                <div class="item-id">SCI-221: Gravity Meter + Calibration Kit</div>
+                <div class="item-specs">
+                    <div class="spec-item">
+                        <div class="spec-label">Weight</div>
+                        <div class="spec-value">45 kg</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Needed By</div>
+                        <div class="spec-value">15 Nov</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Destination</div>
+                        <div class="spec-value">Bharati</div>
+                    </div>
+                </div>
+
+                <div class="diagnosis">
+                    <strong>❌ Violation of C6 (Deadline):</strong> Item needed 15 November.
+                    Earliest Basler flight to Bharati is late November. Ship arrives mid-January.
+                    <br><br>
+                    <strong>Why no flight?</strong> Flights 1–4 are fully booked with higher-priority urgent medical and safety items.
+                </div>
+
+                <div class="fix-options">
+                    <strong>✅ Options:</strong>
+                    <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                        <li>• Bump a lower-priority item from Basler and substitute this</li>
+                        <li>• Defer gravity measurements to January (science delay)</li>
+                        <li>• Send calibration kit only in October, full meter in January</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why This Matters -->
+        <div class="bg-blue-900 bg-opacity-30 border border-blue-600 rounded-lg p-6 mt-8">
+            <h3 class="text-xl font-bold text-white mb-3">💡 Why Automated Solving Wins</h3>
+            <ul class="space-y-2 text-slate-300">
+                <li><strong>Completeness:</strong> Every item is either placed or has a named reason why not.</li>
+                <li><strong>Optimality:</strong> Uses OR-Tools CP-SAT to find the assignment that respects all constraints and maximizes placed items.</li>
+                <li><strong>Transparency:</strong> Constraints are explicit (C1–C7). Decision is defensible in Q&A.</li>
+                <li><strong>Speed:</strong> 400-item problem solved in ~2 seconds. Re-run anytime: "What if we add a 5th flight?"</li>
+                <li><strong>Early Warning:</strong> September discovery means 5 months to negotiate solutions. December discovery means too late.</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-slate-400 text-sm mt-12 pb-8">
+            <p>Solver: Google OR-Tools CP-SAT | Input: 400 manifest items + 7 transport legs | Output: Placement plan + diagnoses</p>
+            <p class="mt-2 text-xs">This is a realistic simulation. Actual season data available from NCPOR published expedition records.</p>
+        </div>
+    </div>
+</body>
+</html>
