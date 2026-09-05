@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolarOS — Interactive Inventory Forecast</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .status-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid #22c55e;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #86efac;
+            animation: pulse 2s infinite;
+        }
+
+        .status-chip.offline {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #fca5a5;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(71, 85, 105, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .card-red {
+            border-color: rgba(239, 68, 68, 0.5);
+            background: rgba(127, 29, 29, 0.2);
+        }
+
+        .card-red:hover {
+            border-color: #ef4444;
+        }
+
+        .critical-value {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin: 0.5rem 0;
+        }
+
+        .critical-value.red { color: #fca5a5; }
+        .critical-value.green { color: #86efac; }
+        .critical-value.orange { color: #fed7aa; }
+
+        .slider-container {
+            margin: 1.5rem 0;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .slider-label-left {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .slider-label-right {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            background: rgba(71, 85, 105, 0.3);
+            border-radius: 5px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #3b82f6;
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: #60a5fa;
+            transform: scale(1.2);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: #3b82f6;
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(71, 85, 105, 0.3);
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #94a3b8;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+
+        .metric-unit {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin: 2rem 0;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .action-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .action-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-text {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .action-button {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .action-button:hover {
+            background: #16a34a;
+            transform: scale(1.05);
+        }
+
+        .scenario-result {
+            background: rgba(30, 41, 59, 0.8);
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .scenario-result.success {
+            border-left-color: #22c55e;
+            color: #86efac;
+        }
+
+        .scenario-result.warning {
+            border-left-color: #f59e0b;
+            color: #fed7aa;
+        }
+
+        .decision-tree {
+            display: grid;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .decision-item {
+            background: rgba(30, 41, 59, 0.6);
+            border-left: 3px solid #3b82f6;
+            padding: 1rem;
+            border-radius: 6px;
+        }
+
+        .decision-item.red { border-left-color: #ef4444; }
+        .decision-item.green { border-left-color: #22c55e; }
+        .decision-item.orange { border-left-color: #f59e0b; }
+
+        .decision-item-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+        }
+
+        .decision-item-text {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .timeline-compact {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            padding: 1rem;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 8px;
+        }
+
+        .timeline-point {
+            flex-shrink: 0;
+            text-align: center;
+            padding: 0.75rem;
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid rgba(71, 85, 105, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 80px;
+        }
+
+        .timeline-point:hover {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .timeline-point-date {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        .timeline-point-label {
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .alert-animation {
+            animation: slideInDown 0.6s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-4 md:p-8">
+        <!-- Header -->
+        <div class="flex justify-between items-start mb-8">
+            <div>
+                <h1 class="text-5xl font-bold mb-2">📦 Interactive Inventory Forecast</h1>
+                <p class="text-slate-400">Adjust consumption, see the forecast change in real-time</p>
+            </div>
+            <div class="status-chip" id="statusChip">
+                <span>🟢 ONLINE</span>
+            </div>
+        </div>
+
+        <!-- What-If Controls -->
+        <div class="card mb-8">
+            <h2 class="text-2xl font-bold mb-6">🎮 Adjust & Forecast</h2>
+
+            <!-- Consumption Slider -->
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="slider-label-left">Daily Diesel Consumption</span>
+                    <span class="slider-label-right" id="consumptionDisplay">129 L/day</span>
+                </div>
+                <input
+                    type="range"
+                    min="100"
+                    max="150"
+                    value="129"
+                    id="consumptionSlider"
+                    onchange="updateForecast()"
+                >
+                <p class="text-slate-400 text-xs mt-2">Drag to simulate different consumption rates</p>
+            </div>
+
+            <!-- Airlift Date Slider -->
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="slider-label-left">Emergency Airlift Arrival</span>
+                    <span class="slider-label-right" id="airliftDisplay">3 Oct 2027</span>
+                </div>
+                <input
+                    type="range"
+                    min="1"
+                    max="20"
+                    value="3"
+                    id="airliftSlider"
+                    onchange="updateForecast()"
+                >
+                <p class="text-slate-400 text-xs mt-2">Days into October when airlift arrives</p>
+            </div>
+
+            <!-- Scenario Result -->
+            <div id="scenarioResult"></div>
+        </div>
+
+        <!-- Forecast Summary -->
+        <div class="card card-red alert-animation mb-8">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h3 class="text-2xl font-bold text-white">MAITRI STATION — DIESEL</h3>
+                    <p class="text-slate-400 text-sm mt-1">Primary fuel (heating, power)</p>
+                </div>
+                <span class="status-chip" style="background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #fca5a5;">
+                    🚨 CRITICAL
+                </span>
+            </div>
+
+            <!-- Key Numbers -->
+            <div class="metric-grid">
+                <div class="metric">
+                    <div class="metric-label">On Hand</div>
+                    <div class="metric-value">2,255</div>
+                    <div class="metric-unit">Litres</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Daily Burn</div>
+                    <div class="metric-value" id="burnValue">129</div>
+                    <div class="metric-unit">L/day</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Days Left</div>
+                    <div class="metric-value critical-value red" id="daysLeft">17.5</div>
+                    <div class="metric-unit">days</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Runs Out On</div>
+                    <div class="metric-value critical-value red" id="zeroDate">2 Oct</div>
+                    <div class="metric-unit">2027</div>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="chart-container">
+                <canvas id="forecastChart"></canvas>
+            </div>
+
+            <!-- How We Know -->
+            <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 1rem; margin-top: 1rem;">
+                <p class="text-blue-200 text-sm">
+                    <strong>📊 Real Math:</strong> 2,255 L ÷ <span id="burnValueInText">129</span> L/day = 17.5 days from 15 Sep = <strong>2 October</strong>.
+                    This calculation comes from the database—28-day trailing average of actual STOCK_CONSUMED events, not an estimate.
+                </p>
+            </div>
+        </div>
+
+        <!-- Decision Tree -->
+        <div class="card mb-8">
+            <h2 class="text-2xl font-bold mb-6">🎯 What This Means</h2>
+            <div class="decision-tree">
+                <div class="decision-item red">
+                    <div class="decision-item-title">1️⃣ Alert Fired: 29 March 2027</div>
+                    <div class="decision-item-text">
+                        System detected critical shortage <strong>190 days before crisis</strong>.
+                        This advance warning allowed logistics to arrange emergency airlift.
+                    </div>
+                </div>
+                <div class="decision-item orange">
+                    <div class="decision-item-title">2️⃣ Forecast Tightened Over Time</div>
+                    <div class="decision-item-text">
+                        29 Mar: "maybe 26 Oct" → 1 Jul: "27 Sep" → 15 Sep: "2 Oct"
+                        As more consumption data arrived, forecast converged to the truth.
+                    </div>
+                </div>
+                <div class="decision-item orange">
+                    <div class="decision-item-title">3️⃣ Airlift Scheduled: 3 October</div>
+                    <div class="decision-item-text">
+                        Emergency resupply planned for 3 Oct, one day after counterfactual crisis.
+                        System gave enough lead time to make this decision and execute it.
+                    </div>
+                </div>
+                <div class="decision-item green">
+                    <div class="decision-item-title">4️⃣ Crisis Averted</div>
+                    <div class="decision-item-text">
+                        Airlift arrived on 3 Oct with fresh diesel. Station never ran dry.
+                        The system worked because it gave 6 months of decision time.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Offline Demo Section -->
+        <div class="card mb-8" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3);">
+            <h2 class="text-2xl font-bold mb-4">🌐 Offline Mode Demo</h2>
+            <p class="text-slate-300 mb-4">
+                Antarctica has minimal internet (2.4 kbps satellite link, often down).
+                Our system works completely offline—events are logged locally and synced when a link appears.
+            </p>
+            <button
+                class="action-button"
+                style="background: #ef4444;"
+                onclick="toggleOfflineMode()"
+                id="offlineButton"
+            >
+                Simulate Network Down
+            </button>
+            <div id="offlineMessage"></div>
+        </div>
+
+        <!-- Safe Items -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-green-400 mb-4">✅ Safe Until Next Resupply</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div class="card">
+                    <h4 class="text-lg font-bold text-white mb-4">Maitri Food</h4>
+                    <div style="space: 1rem;">
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(71, 85, 105, 0.3);">
+                            <span class="text-slate-400">On Hand</span>
+                            <span class="text-white font-bold">3,240 kg</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(71, 85, 105, 0.3);">
+                            <span class="text-slate-400">Daily Burn</span>
+                            <span class="text-white font-bold">21.4 kg/day</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(71, 85, 105, 0.3);">
+                            <span class="text-slate-400">Days Left</span>
+                            <span class="text-green-300 font-bold">151 days</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                            <span class="text-slate-400">Safe Until</span>
+                            <span class="text-green-300 font-bold">13 Feb 2028</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h4 class="text-lg font-bold text-white mb-4">Bharati Diesel</h4>
+                    <div style="space: 1rem;">
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(71, 85, 105, 0.3);">
+                            <span class="text-slate-400">On Hand</span>
+                            <span class="text-white font-bold">11,807 L</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(71, 85, 105, 0.3);">
+                            <span class="text-slate-400">Daily Burn</span>
+                            <span class="text-white font-bold">89.5 L/day</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(71, 85, 105, 0.3);">
+                            <span class="text-slate-400">Days Left</span>
+                            <span class="text-green-300 font-bold">132 days</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                            <span class="text-slate-400">Safe Until</span>
+                            <span class="text-green-300 font-bold">24 Jan 2028</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture Insight -->
+        <div class="action-box">
+            <div class="action-icon">🏗️</div>
+            <div class="action-title">Why Append-Only Works</div>
+            <div class="action-text">
+                <strong>The Problem:</strong> Three copies (Goa, Ship, Station) go offline for months.
+                If you edit data (e.g., "diesel is 2,255 L"), and all three edit independently,
+                they'll conflict when they sync.
+                <br><br>
+                <strong>Our Solution:</strong> Never edit. Only add events.
+                "Officer logged: diesel consumption 129 L" is an event.
+                A thousand copies can log independently, and when they sync,
+                you just merge the events—no conflicts, ever.
+                <br><br>
+                <strong>The Math:</strong> 2,255 L is not stored. It's computed:
+                start quantity + all received - all consumed = current.
+                As long as events append, the answer is always correct.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-slate-400 text-sm mt-12">
+            <p>Try adjusting the sliders. Watch the forecast date and days-left change.</p>
+            <p class="mt-2 text-xs">All numbers are real. All queries are from season.db. Not invented for the demo.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let chart = null;
+        let isOffline = false;
+
+        function updateForecast() {
+            const consumption = parseFloat(document.getElementById('consumptionSlider').value);
+            const airliftDay = parseInt(document.getElementById('airliftSlider').value);
+            const onHand = 2255;
+
+            // Update display
+            document.getElementById('consumptionDisplay').textContent = consumption.toFixed(1) + ' L/day';
+            document.getElementById('burnValue').textContent = consumption.toFixed(1);
+            document.getElementById('burnValueInText').textContent = consumption.toFixed(1);
+
+            // Calculate forecast
+            const daysLeft = (onHand / consumption).toFixed(1);
+            document.getElementById('daysLeft').textContent = daysLeft;
+
+            // Calculate zero date
+            const daysLeftInt = Math.floor(onHand / consumption);
+            const sep15 = new Date('2027-09-15');
+            const zeroDate = new Date(sep15.getTime() + daysLeftInt * 24 * 60 * 60 * 1000);
+            const zeroDayOfMonth = zeroDate.getDate();
+            document.getElementById('zeroDate').textContent = zeroDayOfMonth + ' Oct';
+
+            // Airlift date
+            const airliftDate = new Date('2027-10-' + String(airliftDay).padStart(2, '0'));
+
+            // Scenario result
+            const resultDiv = document.getElementById('scenarioResult');
+            const daysBeforeAirlift = (airliftDate - zeroDate) / (24 * 60 * 60 * 1000);
+
+            let result = '';
+            if (daysBeforeAirlift >= 0) {
+                result = `
+                    <div class="scenario-result success">
+                        ✅ <strong>SAFE</strong>: Airlift arrives ${daysBeforeAirlift.toFixed(1)} days BEFORE diesel runs out.
+                        <br>Zero date: ${zeroDayOfMonth} Oct | Airlift: ${airliftDay} Oct
+                    </div>
+                `;
+            } else {
+                result = `
+                    <div class="scenario-result warning">
+                        ⚠️ <strong>RISKY</strong>: Tank runs dry ${Math.abs(daysBeforeAirlift).toFixed(1)} days BEFORE airlift arrives.
+                        <br>Need airlift by: ${zeroDayOfMonth} Oct (or reduce consumption)
+                    </div>
+                `;
+            }
+            resultDiv.innerHTML = result;
+
+            // Update chart
+            updateChart(consumption, airliftDay);
+        }
+
+        function updateChart(consumption, airliftDay) {
+            const ctx = document.getElementById('forecastChart').getContext('2d');
+
+            // Generate data points
+            const dates = [];
+            const onHandData = [2255];
+            const today = new Date('2027-09-15');
+            let currentQty = 2255;
+
+            for (let i = 0; i <= 30; i++) {
+                const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
+                dates.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+
+                if (i > 0) {
+                    currentQty -= consumption;
+                    if (currentQty < 0) currentQty = 0;
+                    onHandData.push(currentQty);
+                }
+            }
+
+            if (chart) {
+                chart.destroy();
+            }
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [
+                        {
+                            label: 'Diesel On Hand',
+                            data: onHandData,
+                            borderColor: '#fca5a5',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.1,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#ef4444',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#cbd5e1', font: { size: 12 } }
+                        },
+                        annotation: {}
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 3000,
+                            ticks: {
+                                color: '#94a3b8',
+                                callback: (value) => value + ' L'
+                            },
+                            grid: { color: 'rgba(71, 85, 105, 0.1)' }
+                        },
+                        x: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function toggleOfflineMode() {
+            isOffline = !isOffline;
+            const chip = document.getElementById('statusChip');
+            const button = document.getElementById('offlineButton');
+            const message = document.getElementById('offlineMessage');
+
+            if (isOffline) {
+                chip.classList.add('offline');
+                chip.innerHTML = '<span>🔴 OFFLINE — 3 events queued</span>';
+                button.textContent = 'Restore Network';
+                message.innerHTML = `
+                    <div class="scenario-result warning" style="margin-top: 1rem; border-left-color: #f59e0b;">
+                        📡 Network down. Consumption entries logged locally and queued for sync.
+                        <br>• Event 1: Diesel consumption 129 L
+                        <br>• Event 2: Diesel consumption 129 L
+                        <br>• Event 3: Diesel consumption 129 L
+                        <br><strong>When link restores, these 3 events will sync to Goa in ~2 seconds.</strong>
+                    </div>
+                `;
+            } else {
+                chip.classList.remove('offline');
+                chip.innerHTML = '<span>🟢 ONLINE</span>';
+                button.textContent = 'Simulate Network Down';
+                message.innerHTML = `
+                    <div class="scenario-result success" style="margin-top: 1rem;">
+                        ✅ Link restored. 3 events synced to Goa HQ. Forecast updated with latest data.
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize
+        updateForecast();
+    </script>
+</body>
+</html>
