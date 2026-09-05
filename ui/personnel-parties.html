@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolarOS — Personnel & Field Parties</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+        }
+
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #94a3b8;
+        }
+
+        .tab-button.active {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            color: #93c5fd;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .party-alert {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border: 2px solid #ef4444;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            animation: slideIn 0.6s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .party-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .party-card.overdue {
+            border: 2px solid #ef4444;
+            background: rgba(127, 29, 29, 0.2);
+        }
+
+        .party-card:hover {
+            border-color: rgba(71, 85, 105, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .party-id {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 0.5rem;
+        }
+
+        .party-status {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .party-status.ontime {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid #22c55e;
+            color: #86efac;
+        }
+
+        .party-status.overdue {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .timeline-item {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .timeline-item.overdue {
+            border-left-color: #ef4444;
+        }
+
+        .timeline-label {
+            color: #94a3b8;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-value {
+            font-weight: 700;
+            color: #e2e8f0;
+            font-size: 1rem;
+        }
+
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .person-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+
+        .person-card:hover {
+            border-color: rgba(71, 85, 105, 0.6);
+        }
+
+        .person-name {
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 0.5rem;
+        }
+
+        .person-info {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin: 0.35rem 0;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid #3b82f6;
+            color: #93c5fd;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-box {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .alert-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .overdue-reason {
+            background: rgba(30, 41, 59, 0.8);
+            border-left: 3px solid #ef4444;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-6xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-5xl font-bold mb-2">👥 Personnel & Field Parties</h1>
+            <p class="text-slate-400">Roster management and real-time field party tracking</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex gap-2 mb-8 flex-wrap">
+            <button class="tab-button active" onclick="switchTab('overview')">Overview</button>
+            <button class="tab-button" onclick="switchTab('roster')">Roster (35 Members)</button>
+            <button class="tab-button" onclick="switchTab('parties')">Field Parties</button>
+        </div>
+
+        <!-- TAB 1: OVERVIEW -->
+        <div id="overview" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">35</div>
+                    <div class="stat-label">Total Personnel</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">At Maitri</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">At Bharati</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">🚨 Overdue</div>
+                </div>
+            </div>
+
+            <!-- Critical Alert -->
+            <div class="party-alert">
+                <div class="alert-icon">🚨</div>
+                <h2 class="text-2xl font-bold text-red-300 mb-2">Field Party FP-07 Overdue</h2>
+                <p class="text-red-200 mb-4">
+                    Bharati research team departed for ice survey. Expected back at 18:00 UTC.
+                    Did not return until 00:00 UTC — <strong>6 hours overdue</strong>.
+                </p>
+                <p class="text-red-200">
+                    System raised automatic alert when ETA passed. Without this system, overdue detection depends on someone at the radio remembering to check.
+                    With 5 field parties active during summer season, automatic alerts are essential for safety.
+                </p>
+            </div>
+
+            <div class="bg-blue-900 bg-opacity-30 border border-blue-600 rounded-lg p-4 mt-6">
+                <p class="text-blue-200 text-sm">
+                    <strong>💡 Why This Matters:</strong> A field party stuck in a whiteout or crevasse field has a narrow window before hypothermia sets in.
+                    Real-time tracking with automatic overdue alerts means rescue can be launched immediately, not after someone notices at a scheduled radio check.
+                </p>
+            </div>
+        </div>
+
+        <!-- TAB 2: ROSTER -->
+        <div id="roster" class="tab-content">
+            <h2 class="text-2xl font-bold mb-4">Personnel Roster (35 Members)</h2>
+            <p class="text-slate-400 mb-4">Medical clearance, training status, and current location</p>
+
+            <div class="roster-grid">
+                <!-- Maitri Team (7) -->
+                <div class="person-card">
+                    <div class="person-name">Dr. Rajesh Kumar</div>
+                    <div class="person-info">Station Commander</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge">At Maitri</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">Priya Sharma</div>
+                    <div class="person-info">Chief Scientist</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge">At Maitri</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">Arun Singh</div>
+                    <div class="person-info">Mechanic</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge">At Maitri</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">Neha Gupta</div>
+                    <div class="person-info">Medical Officer</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge">At Maitri</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">Vikram Patel</div>
+                    <div class="person-info">Logistics</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge">At Maitri</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">Anjali Mishra</div>
+                    <div class="person-info">Geologist</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge">At Maitri</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">Ravi Menon</div>
+                    <div class="person-info">Communications</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge">At Maitri</span>
+                </div>
+
+                <!-- Bharati Team (5) -->
+                <div class="person-card">
+                    <div class="person-name">Dr. Akshay Joshi</div>
+                    <div class="person-info">Station Commander</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge" style="background: rgba(34, 197, 94, 0.2); border-color: #22c55e; color: #86efac;">At Bharati</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">Sunita Bhat</div>
+                    <div class="person-info">Biologist</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge" style="background: rgba(34, 197, 94, 0.2); border-color: #22c55e; color: #86efac;">At Bharati</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">Deepak Kumar</div>
+                    <div class="person-info">Field Lead</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge" style="background: rgba(34, 197, 94, 0.2); border-color: #22c55e; color: #86efac;">At Bharati</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">Meena Rao</div>
+                    <div class="person-info">Climatologist</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge" style="background: rgba(34, 197, 94, 0.2); border-color: #22c55e; color: #86efac;">At Bharati</span>
+                </div>
+                <div class="person-card">
+                    <div class="person-name">Sanjay Verma</div>
+                    <div class="person-info">Mechanic</div>
+                    <div class="person-info">✓ Medical cleared</div>
+                    <div class="person-info">✓ Cold weather certified</div>
+                    <span class="status-badge" style="background: rgba(34, 197, 94, 0.2); border-color: #22c55e; color: #86efac;">At Bharati</span>
+                </div>
+            </div>
+
+            <div class="text-slate-400 text-sm mt-8">
+                <p>+ 23 more members in Goa, transiting to stations, or on leave</p>
+                <p class="mt-2 text-xs">All clearances and certifications tracked automatically from the log. A person can only be deployed if their medical and training status are both current.</p>
+            </div>
+        </div>
+
+        <!-- TAB 3: FIELD PARTIES -->
+        <div id="parties" class="tab-content">
+            <h2 class="text-2xl font-bold mb-4">Active Field Parties</h2>
+
+            <!-- FP-07 OVERDUE -->
+            <div class="party-card overdue">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="party-id">🚨 FP-07 (OVERDUE)</div>
+                        <div class="text-slate-400 text-sm">Bharati Ice Survey</div>
+                    </div>
+                    <span class="party-status overdue">OVERDUE BY 6 HOURS</span>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item overdue">
+                        <div class="timeline-label">Departed</div>
+                        <div class="timeline-value">25 Jan 07:00Z</div>
+                    </div>
+                    <div class="timeline-item overdue">
+                        <div class="timeline-label">Expected Return</div>
+                        <div class="timeline-value">25 Jan 18:00Z</div>
+                    </div>
+                    <div class="timeline-item overdue">
+                        <div class="timeline-label">Actual Return</div>
+                        <div class="timeline-value">26 Jan 00:00Z</div>
+                    </div>
+                    <div class="timeline-item overdue">
+                        <div class="timeline-label">Delay</div>
+                        <div class="timeline-value">+6 hours</div>
+                    </div>
+                </div>
+
+                <div class="overdue-reason">
+                    <strong>Field Report:</strong> Crevasse field took longer to traverse than expected. Team navigated around unexpected deep crevasses, adding 4 hours to route. Stopped for safety assessment, adding 2 more hours. All team members returned safely.
+                </div>
+
+                <div class="overdue-reason" style="border-left-color: #3b82f6; color: #93c5fd;">
+                    <strong>🔔 Alert:</strong> System detected ETA miss at 18:30 UTC and raised alert automatically. Rescue protocols activated. Team reported in at 23:30 UTC (estimated return soon). Alert cleared at 00:00 UTC when team arrived.
+                </div>
+            </div>
+
+            <!-- Other parties (on time) -->
+            <div class="party-card">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="party-id">FP-03 (COMPLETED)</div>
+                        <div class="text-slate-400 text-sm">Maitri Weather Station</div>
+                    </div>
+                    <span class="party-status ontime">✓ ON TIME</span>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-label">Departed</div>
+                        <div class="timeline-value">24 Jan 06:00Z</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-label">Expected Return</div>
+                        <div class="timeline-value">24 Jan 14:00Z</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-label">Actual Return</div>
+                        <div class="timeline-value">24 Jan 13:45Z</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-label">Status</div>
+                        <div class="timeline-value">Early 15m</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="party-card">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="party-id">FP-05 (ACTIVE)</div>
+                        <div class="text-slate-400 text-sm">Bharati Geological Survey</div>
+                    </div>
+                    <span class="party-status ontime">✓ ACTIVE</span>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-label">Departed</div>
+                        <div class="timeline-value">26 Jan 08:00Z</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-label">Expected Return</div>
+                        <div class="timeline-value">26 Jan 18:00Z</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-label">Time Elapsed</div>
+                        <div class="timeline-value">4 hours</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-label">Time Remaining</div>
+                        <div class="timeline-value">6 hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Deactivate all buttons
+            document.querySelectorAll('.tab-button').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Activate clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
