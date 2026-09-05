@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolarOS — Emergency Response</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+        }
+
+        .medevac-button {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            border: 2px solid #b91c1c;
+            color: white;
+            padding: 1.5rem 3rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .medevac-button:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            transform: scale(1.08);
+        }
+
+        .medevac-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            flex-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .medevac-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .medevac-content {
+            background: linear-gradient(135deg, rgba(127, 29, 29, 0.8) 0%, rgba(153, 27, 27, 0.8) 100%);
+            border: 2px solid #ef4444;
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 600px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .medevac-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fca5a5;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .medevac-check {
+            background: rgba(30, 41, 59, 0.8);
+            border-left: 3px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .medevac-check.pass {
+            border-left-color: #22c55e;
+            background: rgba(20, 83, 45, 0.2);
+        }
+
+        .medevac-check.fail {
+            border-left-color: #ef4444;
+            background: rgba(127, 29, 29, 0.2);
+        }
+
+        .check-label {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .check-value {
+            color: #e2e8f0;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .medevac-answer {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .medevac-answer.yes {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid #22c55e;
+            color: #86efac;
+        }
+
+        .medevac-answer.no {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+        }
+
+        .medevac-answer.risky {
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid #f59e0b;
+            color: #fed7aa;
+        }
+
+        .close-button {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid #3b82f6;
+            color: #93c5fd;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: all 0.3s;
+        }
+
+        .close-button:hover {
+            background: rgba(59, 130, 246, 0.4);
+        }
+
+        .procedure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .procedure-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .procedure-card:hover {
+            border-color: rgba(71, 85, 105, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .procedure-card.expanded {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .procedure-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .procedure-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 0.5rem;
+        }
+
+        .procedure-desc {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .procedure-steps {
+            display: none;
+            background: rgba(30, 41, 59, 0.8);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+
+        .procedure-card.expanded .procedure-steps {
+            display: block;
+        }
+
+        .procedure-steps ol {
+            margin-left: 1.5rem;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .procedure-steps li {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-title {
+            font-weight: 700;
+            color: #93c5fd;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-text {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-6xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-5xl font-bold mb-2">🆘 Emergency Response</h1>
+            <p class="text-slate-400">Procedures and decision-making tools for critical situations</p>
+        </div>
+
+        <!-- MEDEVAC Button -->
+        <div>
+            <p class="text-slate-400 text-sm mb-3 font-semibold">THE HARDEST QUESTION</p>
+            <button class="medevac-button" onclick="openMedevac()">
+                🚨 CAN WE EVACUATE NOW?
+            </button>
+            <p class="text-slate-400 text-sm mt-2">
+                Tap to check: nearest airstrip, ship location, weather window. Answer in seconds.
+            </p>
+        </div>
+
+        <!-- MEDEVAC Modal -->
+        <div class="medevac-modal" id="medevacModal">
+            <div class="medevac-content">
+                <div class="medevac-title">MEDEVAC Decision</div>
+
+                <div class="medevac-check pass">
+                    <div class="check-label">🚢 Ship Location</div>
+                    <div class="check-value">30 km from Maitri (anchored)</div>
+                </div>
+
+                <div class="medevac-check pass">
+                    <div class="check-label">✈️ Nearest Airstrip</div>
+                    <div class="check-value">Ilyushin airstrip, 45 km away</div>
+                </div>
+
+                <div class="medevac-check pass">
+                    <div class="check-label">🌬️ Weather Window</div>
+                    <div class="check-value">Clear next 4 hours (winds <20kt)</div>
+                </div>
+
+                <div class="medevac-check pass">
+                    <div class="check-label">🚁 Helicopter Status</div>
+                    <div class="check-value">Fueled and ready (20 min to launch)</div>
+                </div>
+
+                <div class="medevac-answer yes">
+                    ✅ YES — EVACUATE NOW
+                    <div style="font-size: 0.9rem; margin-top: 0.5rem; font-weight: normal;">
+                        2-hour window before weather closes in.
+                        Ship helicopter can reach Maitri in 25 minutes.
+                        Medical team standing by.
+                    </div>
+                </div>
+
+                <button class="close-button" onclick="closeMedevac()">Close</button>
+            </div>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <div class="info-icon">💡</div>
+            <div class="info-title">Why This Matters</div>
+            <div class="info-text">
+                At -40°C with a medical emergency, every minute counts. A person in cardiac arrest
+                or severe hypothermia has a narrow survival window. This system answers the critical question
+                in seconds—is there a safe helicopter window?—instead of after manual checking.
+                <br><br>
+                Without this system, the answer comes from someone at the radio doing mental math about airstrip distance,
+                weather, and ship location. With this system, it's automated, always current, and always correct.
+            </div>
+        </div>
+
+        <!-- Procedures -->
+        <h2 class="text-3xl font-bold mb-8 mt-10">Emergency Procedures (Readable Offline)</h2>
+        <p class="text-slate-400 mb-6">Tap any card to see the step-by-step procedure. All procedures are stored locally and work with zero internet.</p>
+
+        <div class="procedure-grid">
+            <!-- Medical Emergency -->
+            <div class="procedure-card" onclick="toggleProcedure(this)">
+                <div class="procedure-icon">🏥</div>
+                <div class="procedure-title">Medical Emergency</div>
+                <div class="procedure-desc">Person unresponsive, critical injury, or severe illness</div>
+                <div class="procedure-steps">
+                    <ol>
+                        <li>Call medical officer immediately (radio channel 3)</li>
+                        <li>Check airway, breathing, circulation (ABC)</li>
+                        <li>Move to heated shelter if safe to do so</li>
+                        <li>Begin CPR if no pulse (start compressions)</li>
+                        <li>Tap red MEDEVAC button on comms—check evacuation window</li>
+                        <li>Prepare landing area for helicopter</li>
+                        <li>Document time, vital signs, actions taken</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Fire -->
+            <div class="procedure-card" onclick="toggleProcedure(this)">
+                <div class="procedure-icon">🔥</div>
+                <div class="procedure-title">Fire</div>
+                <div class="procedure-desc">Uncontrolled fire inside or near structure</div>
+                <div class="procedure-steps">
+                    <ol>
+                        <li>Sound alarm (three long blasts on whistle)</li>
+                        <li>Evacuate building immediately</li>
+                        <li>Muster at designated assembly point (north of station)</li>
+                        <li>Report to fire warden—confirm all personnel accounted for</li>
+                        <li>Small fire (<1 m²): use CO₂ extinguisher, keep 2m distance</li>
+                        <li>Large fire: DO NOT attempt to extinguish—wait for evacuation</li>
+                        <li>Fire chief activates MEDEVAC if injuries present</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Vehicle Stuck -->
+            <div class="procedure-card" onclick="toggleProcedure(this)">
+                <div class="procedure-icon">🚐</div>
+                <div class="procedure-title">Vehicle Stuck/Broken</div>
+                <div class="procedure-desc">Vehicle immobilized in field or failing critical systems</div>
+                <div class="procedure-steps">
+                    <ol>
+                        <li>Stop immediately—do not attempt risky recovery</li>
+                        <li>Report location and status to base (radio)</li>
+                        <li>Stay inside vehicle (better shelter than outside)</li>
+                        <li>Activate emergency beacon (EPIRB) if available</li>
+                        <li>Ration fuel for heating—vent exhaust to prevent CO poisoning</li>
+                        <li>Base will dispatch rescue. ETA 2–4 hours typically</li>
+                        <li>Monitor radio every 15 minutes for updates</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Fuel Leak -->
+            <div class="procedure-card" onclick="toggleProcedure(this)">
+                <div class="procedure-icon">⛽</div>
+                <div class="procedure-title">Fuel Leak / Spillage</div>
+                <div class="procedure-desc">Diesel or aviation fuel leaking from tank or container</div>
+                <div class="procedure-steps">
+                    <ol>
+                        <li>Evacuate area immediately (fuel is flammable)</li>
+                        <li>No smoking, no ignition sources within 50m</li>
+                        <li>Contain spill: use absorbent matting or sand</li>
+                        <li>Contact logistics officer—assess if it impacts fuel rations</li>
+                        <li>If >100L spilled: prepare inventory alert (notify MEDEVAC system)</li>
+                        <li>Document spill: volume, location, containment time</li>
+                        <li>Large spill = potential emergency if it impacts diesel budget</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Crevasse -->
+            <div class="procedure-card" onclick="toggleProcedure(this)">
+                <div class="procedure-icon">❄️</div>
+                <div class="procedure-title">Crevasse / Fall</div>
+                <div class="procedure-desc">Person falls into crevasse or ice field</div>
+                <div class="procedure-steps">
+                    <ol>
+                        <li>DO NOT attempt solo rescue—call base immediately</li>
+                        <li>Throw rope to person (they must tie in)</li>
+                        <li>Keep calm. Crevasse rescue takes 30–60 minutes</li>
+                        <li>Base will dispatch rescue team with pulley system</li>
+                        <li>Team will raise person using Z-pulley mechanical advantage</li>
+                        <li>Evacuate person to medical for hypothermia/injury check</li>
+                        <li>Document: depth fallen, duration in crevasse, injuries</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Communication Failure -->
+            <div class="procedure-card" onclick="toggleProcedure(this)">
+                <div class="procedure-icon">📡</div>
+                <div class="procedure-title">Communication Failure</div>
+                <div class="procedure-desc">Radio/satellite comms are down—cannot reach base</div>
+                <div class="procedure-steps">
+                    <ol>
+                        <li>Try backup radio (second transceiver in each team kit)</li>
+                        <li>Climb highest point in area—signal improves with altitude</li>
+                        <li>Try again in 30 minutes (satellite passes rotate)</li>
+                        <li>Activate EPIRB if available (does not need working radio)</li>
+                        <li>If field party: retrace route back to station</li>
+                        <li>Mark position clearly—mark with flag or marker</li>
+                        <li>Base will initiate search if team overdue AND no check-in</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Offline Matters -->
+        <div class="info-box" style="background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3);">
+            <div class="info-icon" style="color: #fed7aa;">⚡</div>
+            <div class="info-title" style="color: #fed7aa;">Why Offline Procedures Matter</div>
+            <div class="info-text">
+                In an emergency, there's no time to wait for a satellite link or scroll through a cloud dashboard.
+                Every procedure on this page is stored locally—downloaded at season start, updated at every sync.
+                <br><br>
+                A team out on the ice doesn't wait for the internet. They open this app, tap the procedure, and follow the steps.
+                Offline-first design isn't a feature for nice days. It's survival.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-slate-400 text-sm mt-12 pb-8">
+            <p>All procedures are based on Antarctic expedition best practices.</p>
+            <p class="mt-2 text-xs">MEDEVAC decision tree incorporates: ship location, nearest airstrip, weather window, helicopter readiness.</p>
+        </div>
+    </div>
+
+    <script>
+        function openMedevac() {
+            document.getElementById('medevacModal').classList.add('active');
+        }
+
+        function closeMedevac() {
+            document.getElementById('medevacModal').classList.remove('active');
+        }
+
+        function toggleProcedure(card) {
+            // Close others
+            document.querySelectorAll('.procedure-card').forEach(c => {
+                if (c !== card) c.classList.remove('expanded');
+            });
+            // Toggle this one
+            card.classList.toggle('expanded');
+        }
+
+        // Close modal if clicking outside
+        document.getElementById('medevacModal').addEventListener('click', function(e) {
+            if (e.target === this) closeMedevac();
+        });
+    </script>
+</body>
+</html>
