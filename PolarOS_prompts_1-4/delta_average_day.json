@@ -1,0 +1,32 @@
+[
+ {
+  "event_id": "MAITRI-000542",
+  "node_id": "MAITRI",
+  "payload": {
+   "headcount": 7,
+   "note": "daily draw",
+   "qty": 123.47,
+   "unit": "L"
+  },
+  "priority": 4,
+  "seq": 542,
+  "subject": "MAITRI:diesel",
+  "ts": "2027-03-02T18:30:00Z",
+  "type": "STOCK_CONSUMED"
+ },
+ {
+  "event_id": "MAITRI-000543",
+  "node_id": "MAITRI",
+  "payload": {
+   "headcount": 7,
+   "note": "daily draw",
+   "qty": 20.23,
+   "unit": "kg"
+  },
+  "priority": 4,
+  "seq": 543,
+  "subject": "MAITRI:food",
+  "ts": "2027-03-02T18:30:00Z",
+  "type": "STOCK_CONSUMED"
+ }
+]

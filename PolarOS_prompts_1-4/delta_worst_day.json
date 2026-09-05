@@ -1,0 +1,2955 @@
+[
+ {
+  "event_id": "MAITRI-000144",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 144,
+  "subject": "M-001",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000145",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 145,
+  "subject": "M-002",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000146",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 146,
+  "subject": "M-003",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000147",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 147,
+  "subject": "M-004",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000148",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 148,
+  "subject": "M-005",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000149",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 149,
+  "subject": "M-006",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000150",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 150,
+  "subject": "M-007",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000151",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 151,
+  "subject": "M-013",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000152",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 152,
+  "subject": "M-014",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000153",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 153,
+  "subject": "M-015",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000154",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 154,
+  "subject": "M-016",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000155",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 155,
+  "subject": "M-017",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000156",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 156,
+  "subject": "M-018",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000157",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 157,
+  "subject": "M-019",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000158",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 158,
+  "subject": "M-020",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000159",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 159,
+  "subject": "M-021",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000160",
+  "node_id": "MAITRI",
+  "payload": {
+   "from_location": "VESSEL",
+   "location": "MAITRI",
+   "reason": "station induction"
+  },
+  "priority": 2,
+  "seq": 160,
+  "subject": "M-022",
+  "ts": "2026-12-28T09:30:00Z",
+  "type": "MEMBER_MOVED"
+ },
+ {
+  "event_id": "MAITRI-000161",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 161,
+  "subject": "CR-0002",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000162",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 162,
+  "subject": "CR-0003",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000163",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 163,
+  "subject": "CR-0004",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000164",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 164,
+  "subject": "CR-0005",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000165",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 165,
+  "subject": "CR-0008",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000166",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 166,
+  "subject": "CR-0012",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000167",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 167,
+  "subject": "CR-0013",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000168",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 168,
+  "subject": "CR-0015",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000169",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 169,
+  "subject": "CR-0016",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000170",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 170,
+  "subject": "CR-0017",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000171",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 171,
+  "subject": "CR-0019",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000172",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 172,
+  "subject": "CR-0020",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000173",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 173,
+  "subject": "CR-0021",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000174",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 174,
+  "subject": "CR-0023",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000175",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 175,
+  "subject": "CR-0024",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000176",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 176,
+  "subject": "CR-0025",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000177",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 177,
+  "subject": "CR-0029",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000178",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 178,
+  "subject": "CR-0033",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000179",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 179,
+  "subject": "CR-0037",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000180",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 180,
+  "subject": "CR-0039",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000181",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 181,
+  "subject": "CR-0041",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000182",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 182,
+  "subject": "CR-0044",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000183",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 183,
+  "subject": "CR-0045",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000184",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 184,
+  "subject": "CR-0048",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000185",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 185,
+  "subject": "CR-0049",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000186",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 186,
+  "subject": "CR-0050",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000187",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 187,
+  "subject": "CR-0052",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000188",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 188,
+  "subject": "CR-0053",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000189",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 189,
+  "subject": "CR-0057",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000190",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 190,
+  "subject": "CR-0058",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000191",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 191,
+  "subject": "CR-0059",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000192",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 192,
+  "subject": "CR-0060",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000193",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 193,
+  "subject": "CR-0062",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000194",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 194,
+  "subject": "CR-0063",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000195",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 195,
+  "subject": "CR-0065",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000196",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 196,
+  "subject": "CR-0067",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000197",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 197,
+  "subject": "CR-0068",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000198",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 198,
+  "subject": "CR-0075",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000199",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 199,
+  "subject": "CR-0077",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000200",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 200,
+  "subject": "CR-0079",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000201",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 201,
+  "subject": "CR-0084",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000202",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 202,
+  "subject": "CR-0086",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000203",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 203,
+  "subject": "CR-0089",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000204",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 204,
+  "subject": "CR-0090",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000205",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 205,
+  "subject": "CR-0093",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000206",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 206,
+  "subject": "CR-0095",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000207",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 207,
+  "subject": "CR-0096",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000208",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 208,
+  "subject": "CR-0099",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000209",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 209,
+  "subject": "CR-0102",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000210",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 210,
+  "subject": "CR-0103",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000211",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 211,
+  "subject": "CR-0104",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000212",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 212,
+  "subject": "CR-0107",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000213",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 213,
+  "subject": "CR-0110",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000214",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 214,
+  "subject": "CR-0112",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000215",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 215,
+  "subject": "CR-0115",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000216",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 216,
+  "subject": "CR-0116",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000217",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 217,
+  "subject": "CR-0118",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000218",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 218,
+  "subject": "CR-0119",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000219",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 219,
+  "subject": "CR-0120",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000220",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 220,
+  "subject": "CR-0127",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000221",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 221,
+  "subject": "CR-0133",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000222",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 222,
+  "subject": "CR-0136",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000223",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 223,
+  "subject": "CR-0137",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000224",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 224,
+  "subject": "CR-0138",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000225",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 225,
+  "subject": "CR-0140",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000226",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 226,
+  "subject": "CR-0141",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000227",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 227,
+  "subject": "CR-0142",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000228",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 228,
+  "subject": "CR-0148",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000229",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 229,
+  "subject": "CR-0149",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000230",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 230,
+  "subject": "CR-0151",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000231",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 231,
+  "subject": "CR-0153",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000232",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 232,
+  "subject": "CR-0155",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000233",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 233,
+  "subject": "CR-0156",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000234",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 234,
+  "subject": "CR-0158",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000235",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 235,
+  "subject": "CR-0159",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000236",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 236,
+  "subject": "CR-0161",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000237",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 237,
+  "subject": "CR-0165",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000238",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 238,
+  "subject": "CR-0166",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000239",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 239,
+  "subject": "CR-0169",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000240",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 240,
+  "subject": "CR-0170",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000241",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 241,
+  "subject": "CR-0172",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000242",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 242,
+  "subject": "CR-0173",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000243",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 243,
+  "subject": "CR-0174",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000244",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 244,
+  "subject": "CR-0176",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000245",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 245,
+  "subject": "CR-0177",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000246",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 246,
+  "subject": "CR-0178",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000247",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 247,
+  "subject": "CR-0181",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000248",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 248,
+  "subject": "CR-0183",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000249",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 249,
+  "subject": "CR-0187",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000250",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 250,
+  "subject": "CR-0189",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000251",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 251,
+  "subject": "CR-0192",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000252",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 252,
+  "subject": "CR-0195",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000253",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 253,
+  "subject": "CR-0201",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000254",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 254,
+  "subject": "CR-0202",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000255",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 255,
+  "subject": "CR-0203",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000256",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 256,
+  "subject": "CR-0204",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000257",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 257,
+  "subject": "CR-0205",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000258",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 258,
+  "subject": "CR-0206",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000259",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 259,
+  "subject": "CR-0209",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000260",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 260,
+  "subject": "CR-0210",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000261",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 261,
+  "subject": "CR-0211",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000262",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 262,
+  "subject": "CR-0212",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000263",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 263,
+  "subject": "CR-0213",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000264",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 264,
+  "subject": "CR-0215",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000265",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 265,
+  "subject": "CR-0216",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000266",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 266,
+  "subject": "CR-0217",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000267",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 267,
+  "subject": "CR-0221",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000268",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 268,
+  "subject": "CR-0225",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000269",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 269,
+  "subject": "CR-0226",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000270",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 270,
+  "subject": "CR-0230",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000271",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 271,
+  "subject": "CR-0237",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000272",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 272,
+  "subject": "CR-0238",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000273",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 273,
+  "subject": "CR-0240",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000274",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 274,
+  "subject": "CR-0244",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000275",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 275,
+  "subject": "CR-0245",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000276",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 276,
+  "subject": "CR-0250",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000277",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 277,
+  "subject": "CR-0254",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000278",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 278,
+  "subject": "CR-0255",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000279",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 279,
+  "subject": "CR-0256",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000280",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 280,
+  "subject": "CR-0259",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000281",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 281,
+  "subject": "CR-0261",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000282",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 282,
+  "subject": "CR-0263",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000283",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 283,
+  "subject": "CR-0264",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000284",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 284,
+  "subject": "CR-0266",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000285",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 285,
+  "subject": "CR-0268",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000286",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 286,
+  "subject": "CR-0269",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000287",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 287,
+  "subject": "CR-0270",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000288",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 288,
+  "subject": "CR-0272",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000289",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 289,
+  "subject": "CR-0273",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000290",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 290,
+  "subject": "CR-0276",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000291",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 291,
+  "subject": "CR-0278",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000292",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 292,
+  "subject": "CR-0281",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000293",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 293,
+  "subject": "CR-0286",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000294",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 294,
+  "subject": "CR-0287",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000295",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 295,
+  "subject": "CR-0289",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000296",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 296,
+  "subject": "CR-0291",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000297",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 297,
+  "subject": "CR-0293",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000298",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 298,
+  "subject": "CR-0296",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000299",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 299,
+  "subject": "CR-0302",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000300",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 300,
+  "subject": "CR-0306",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000301",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 301,
+  "subject": "CR-0310",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000302",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 302,
+  "subject": "CR-0313",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000303",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 303,
+  "subject": "CR-0314",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000304",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 304,
+  "subject": "CR-0318",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000305",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 305,
+  "subject": "CR-0320",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000306",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 306,
+  "subject": "CR-0323",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000307",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 307,
+  "subject": "CR-0324",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000308",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 308,
+  "subject": "CR-0327",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000309",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 309,
+  "subject": "CR-0331",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000310",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 310,
+  "subject": "CR-0334",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000311",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 311,
+  "subject": "CR-0337",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000312",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 312,
+  "subject": "CR-0339",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000313",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 313,
+  "subject": "CR-0342",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000314",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 314,
+  "subject": "CR-0345",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000315",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 315,
+  "subject": "CR-0346",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000316",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 316,
+  "subject": "CR-0348",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000317",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 317,
+  "subject": "CR-0351",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000318",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 318,
+  "subject": "CR-0356",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000319",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 319,
+  "subject": "CR-0358",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000320",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 320,
+  "subject": "CR-0365",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000321",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 321,
+  "subject": "CR-0369",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000322",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 322,
+  "subject": "CR-0372",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000323",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 323,
+  "subject": "CR-0373",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000324",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 324,
+  "subject": "CR-0374",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000325",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 325,
+  "subject": "CR-0375",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000326",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 326,
+  "subject": "CR-0376",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000327",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 327,
+  "subject": "CR-0381",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000328",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 328,
+  "subject": "CR-0382",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000329",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 329,
+  "subject": "CR-0385",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000330",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-2"
+  },
+  "priority": 3,
+  "seq": 330,
+  "subject": "CR-0389",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000331",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 331,
+  "subject": "CR-0390",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000332",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 332,
+  "subject": "CR-0393",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000333",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 333,
+  "subject": "CR-0395",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000334",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-3"
+  },
+  "priority": 3,
+  "seq": 334,
+  "subject": "CR-0396",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000335",
+  "node_id": "MAITRI",
+  "payload": {
+   "custodian_from": "MAITRI_STORE",
+   "custodian_to": "MAITRI_STORE",
+   "location": "MAITRI",
+   "lot_id": "LOT-1"
+  },
+  "priority": 3,
+  "seq": 335,
+  "subject": "CR-0397",
+  "ts": "2026-12-28T15:55:00Z",
+  "type": "CUSTODY_TRANSFERRED"
+ },
+ {
+  "event_id": "MAITRI-000336",
+  "node_id": "MAITRI",
+  "payload": {
+   "headcount": 22,
+   "note": "weekly issue",
+   "qty": 1.39,
+   "unit": "ea"
+  },
+  "priority": 4,
+  "seq": 336,
+  "subject": "MAITRI:medical",
+  "ts": "2026-12-28T16:00:00Z",
+  "type": "STOCK_CONSUMED"
+ },
+ {
+  "event_id": "MAITRI-000337",
+  "node_id": "MAITRI",
+  "payload": {
+   "headcount": 22,
+   "note": "weekly issue",
+   "qty": 3.02,
+   "unit": "ea"
+  },
+  "priority": 4,
+  "seq": 337,
+  "subject": "MAITRI:misc",
+  "ts": "2026-12-28T16:00:00Z",
+  "type": "STOCK_CONSUMED"
+ },
+ {
+  "event_id": "MAITRI-000338",
+  "node_id": "MAITRI",
+  "payload": {
+   "headcount": 22,
+   "note": "weekly issue",
+   "qty": 3.17,
+   "unit": "ea"
+  },
+  "priority": 4,
+  "seq": 338,
+  "subject": "MAITRI:scientific",
+  "ts": "2026-12-28T16:00:00Z",
+  "type": "STOCK_CONSUMED"
+ },
+ {
+  "event_id": "MAITRI-000339",
+  "node_id": "MAITRI",
+  "payload": {
+   "headcount": 22,
+   "note": "weekly issue",
+   "qty": 2.37,
+   "unit": "ea"
+  },
+  "priority": 4,
+  "seq": 339,
+  "subject": "MAITRI:spares",
+  "ts": "2026-12-28T16:00:00Z",
+  "type": "STOCK_CONSUMED"
+ },
+ {
+  "event_id": "MAITRI-000340",
+  "node_id": "MAITRI",
+  "payload": {
+   "headcount": 22,
+   "note": "daily draw",
+   "qty": 192.11,
+   "unit": "L"
+  },
+  "priority": 4,
+  "seq": 340,
+  "subject": "MAITRI:diesel",
+  "ts": "2026-12-28T18:30:00Z",
+  "type": "STOCK_CONSUMED"
+ },
+ {
+  "event_id": "MAITRI-000341",
+  "node_id": "MAITRI",
+  "payload": {
+   "headcount": 22,
+   "note": "daily draw",
+   "qty": 69.18,
+   "unit": "kg"
+  },
+  "priority": 4,
+  "seq": 341,
+  "subject": "MAITRI:food",
+  "ts": "2026-12-28T18:30:00Z",
+  "type": "STOCK_CONSUMED"
+ }
+]

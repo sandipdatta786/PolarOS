@@ -1,0 +1,3 @@
+TOTAL EVENTS          : 4625
+  ALERT_RAISED                3
+  PARTY_OVERDUE               1

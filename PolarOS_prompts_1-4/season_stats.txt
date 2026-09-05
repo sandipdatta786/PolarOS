@@ -1,0 +1,116 @@
+PolarOS — season generation report
+==============================================================
+season                : 2026-27
+seed                  : 20260903   (deterministic — re-run and diff this file)
+log span              : 2026-08-02T04:30:00Z .. 2027-11-30T18:30:00Z
+
+TOTAL EVENTS          : 4625
+
+Events per node
+--------------------------------------------------------------
+  BHARATI      1157    25.0%
+  GOA          1342    29.0%
+  MAITRI       1272    27.5%
+  SANDHI        262     5.7%
+  VESSEL        592    12.8%
+
+Events per type (all 18 must appear)
+--------------------------------------------------------------
+  ALERT_RAISED                3
+  CLEARANCE_RECORDED        105
+  CRATE_PACKED              400
+  CRATE_SCANNED            1003
+  CUSTODY_TRANSFERRED      1001
+  HAZARD_DECLARED            31
+  LOT_DISPATCHED              3
+  LOT_SAILED                  3
+  MANIFEST_CREATED            3
+  MEMBER_MOVED              116
+  MEMBER_REGISTERED          35
+  PARTY_DEPARTED             20
+  PARTY_OVERDUE               1
+  PARTY_RETURNED             20
+  SOP_TRIGGERED               2
+  STOCK_CONSUMED           1799
+  STOCK_COUNTED              58
+  STOCK_RECEIVED             22
+  --                         18 types present
+  missing types          NONE
+
+Events per priority (1=safety .. 5=admin)
+--------------------------------------------------------------
+  priority 1      37
+  priority 2     296
+  priority 3    2410
+  priority 4    1879
+  priority 5       3
+
+Cargo
+--------------------------------------------------------------
+  manifest lines (crates)      : 400
+  movement events              : 2004  (5.01 per crate)
+  hazardous crates declared    : 31  (7.8% of lines)
+  late hazard declaration      : CR-0005
+  category mix
+      diesel         50    12.5%
+      food          140    35.0%
+      jetfuel        30     7.5%
+      medical        20     5.0%
+      misc           20     5.0%
+      scientific     60    15.0%
+      spares         80    20.0%
+
+Personnel
+--------------------------------------------------------------
+  members registered           : 35
+  winter-over complement       : MAITRI 7, BHARATI 5
+  roster at end of log         : 7 at MAITRI, 5 at BHARATI
+
+Field parties
+--------------------------------------------------------------
+  parties despatched           : 20
+  overdue incident             : FP-07 at BHARATI, departed 2027-01-25, ETA 2027-01-25T18:00:00Z, returned +6h
+
+Inventory
+--------------------------------------------------------------
+  stock audits (STOCK_COUNTED) : 58
+  MAITRI diesel requisitioned  : 45890.0 L  (Goa plan: 130 L/day x 353 days)
+  MAITRI diesel delivered      : 39006.5 L  (15% short — PLANTED)
+  MAITRI diesel true need      : 47392.0 L  to 15 Dec 2027
+  stockouts reached in sim     : none
+  emergency airlift            : 7500 L to MAITRI on 2027-10-03
+
+Burn-rate alerts raised BY THE SIMULATION (28-day trailing mean)
+--------------------------------------------------------------
+  MAITRI   diesel   raised 2027-03-29  ->  zero on 2027-10-26
+           116.3 L/day trailing mean, 24642 L on hand that evening
+
+v_stock at end of log
+--------------------------------------------------------------
+  BHARATI   diesel             5722.9 L
+  BHARATI   food                962.8 kg
+  BHARATI   jetfuel           12491.1 L
+  BHARATI   medical             340.0 ea
+  BHARATI   misc                188.2 ea
+  BHARATI   scientific          214.5 ea
+  BHARATI   spares              548.6 ea
+  MAITRI    diesel              931.1 L
+  MAITRI    food               1545.8 kg
+  MAITRI    jetfuel           17144.1 L
+  MAITRI    medical             453.1 ea
+  MAITRI    misc                255.6 ea
+  MAITRI    scientific          290.7 ea
+  MAITRI    spares              760.8 ea
+  SANDHI    diesel              251.2 L
+  SANDHI    food                101.7 kg
+  SANDHI    jetfuel            8400.0 L
+  SANDHI    medical             171.7 ea
+  SANDHI    misc                115.2 ea
+  SANDHI    scientific          130.7 ea
+  SANDHI    spares              302.8 ea
+
+==============================================================
+Gate check
+  4000 <= 4625 <= 8000            : PASS
+  all 18 event types present    : PASS
+==============================================================
