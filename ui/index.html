@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolarOS — Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 6xl;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+
+        .header-subtitle {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        .status-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid #22c55e;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #86efac;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .tab-nav {
+            max-width: 6xl;
+            margin: 0 auto;
+            display: flex;
+            gap: 0.5rem;
+            padding: 1.5rem 2rem 0;
+            overflow-x: auto;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-bottom: 2px solid transparent;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #94a3b8;
+            white-space: nowrap;
+        }
+
+        .tab-button:hover {
+            border-color: rgba(71, 85, 105, 0.6);
+            color: #cbd5e1;
+        }
+
+        .tab-button.active {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            border-bottom-color: #3b82f6;
+            color: #93c5fd;
+        }
+
+        .tab-content-wrapper {
+            max-width: 6xl;
+            margin: 0 auto;
+            padding: 0 2rem 2rem;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .iframe-container {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+            display: block;
+        }
+
+        .module-icon {
+            font-size: 1.25rem;
+            margin-right: 0.5rem;
+        }
+
+        .quick-access {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quick-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quick-card:hover {
+            border-color: rgba(71, 85, 105, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .quick-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-title {
+            font-weight: 600;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        .quick-desc {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div>
+                <div class="header-title">🌍 PolarOS Command Center</div>
+                <div class="header-subtitle">Antarctic Expedition Logistics — Offline-First Platform</div>
+            </div>
+            <div class="status-chip">
+                <span>🟢 ALL SYSTEMS ONLINE</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tab-nav">
+        <button class="tab-button active" onclick="switchTab('overview', this)">
+            <span class="module-icon">📋</span>Overview
+        </button>
+        <button class="tab-button" onclick="switchTab('inventory', this)">
+            <span class="module-icon">📦</span>Inventory Forecast
+        </button>
+        <button class="tab-button" onclick="switchTab('cargo', this)">
+            <span class="module-icon">📦</span>Cargo Tracking
+        </button>
+        <button class="tab-button" onclick="switchTab('personnel', this)">
+            <span class="module-icon">👥</span>Personnel & Parties
+        </button>
+        <button class="tab-button" onclick="switchTab('expedition', this)">
+            <span class="module-icon">🚀</span>Expedition Planning
+        </button>
+        <button class="tab-button" onclick="switchTab('emergency', this)">
+            <span class="module-icon">🆘</span>Emergency Response
+        </button>
+    </div>
+
+    <!-- Content -->
+    <div class="tab-content-wrapper">
+        <!-- OVERVIEW TAB -->
+        <div id="overview" class="tab-content active">
+            <h1 class="text-4xl font-bold mb-2">Mission Dashboard</h1>
+            <p class="text-slate-400 mb-8">Five systems. One event log. Offline-first design.</p>
+
+            <div class="quick-access">
+                <div class="quick-card" onclick="switchTab('inventory', document.querySelectorAll('.tab-button')[1])">
+                    <div class="quick-icon">📦</div>
+                    <div class="quick-title">Inventory Forecast</div>
+                    <div class="quick-desc">Stock levels & burn rates. Alert: Diesel runs out 2 Oct (190 days warning).</div>
+                </div>
+
+                <div class="quick-card" onclick="switchTab('cargo', document.querySelectorAll('.tab-button')[2])">
+                    <div class="quick-icon">📦</div>
+                    <div class="quick-title">Cargo Tracking</div>
+                    <div class="quick-desc">Custody chain. Crate CR-0005: hazard declared 223 hours late.</div>
+                </div>
+
+                <div class="quick-card" onclick="switchTab('personnel', document.querySelectorAll('.tab-button')[3])">
+                    <div class="quick-icon">👥</div>
+                    <div class="quick-title">Personnel & Parties</div>
+                    <div class="quick-desc">Roster & field parties. Alert: FP-07 overdue 6 hours.</div>
+                </div>
+
+                <div class="quick-card" onclick="switchTab('expedition', document.querySelectorAll('.tab-button')[4])">
+                    <div class="quick-icon">🚀</div>
+                    <div class="quick-title">Expedition Planning</div>
+                    <div class="quick-desc">Solver output. 397/400 items placed. 3 flagged in September.</div>
+                </div>
+
+                <div class="quick-card" onclick="switchTab('emergency', document.querySelectorAll('.tab-button')[5])">
+                    <div class="quick-icon">🆘</div>
+                    <div class="quick-title">Emergency Response</div>
+                    <div class="quick-desc">MEDEVAC decision. Can we evacuate NOW?</div>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 2rem; margin-top: 2rem;">
+                <h2 class="text-2xl font-bold text-white mb-3">The Architecture</h2>
+                <p class="text-slate-300 mb-3">
+                    <strong>One append-only event log.</strong> Every action (cargo scanned, diesel consumed, party checked in, item packed) is one immutable event.
+                </p>
+                <p class="text-slate-300 mb-3">
+                    <strong>Three copies offline for months.</strong> Goa HQ, ship, and station each keep their own log. When a satellite link appears (even 15 minutes), they sync: "I have events 1–4821, send me everything after."
+                </p>
+                <p class="text-slate-300">
+                    <strong>No conflicts. Ever.</strong> Because nobody edits anything, there's nothing to fight about. Merge is just combining the events chronologically.
+                </p>
+            </div>
+        </div>
+
+        <!-- INVENTORY TAB -->
+        <div id="inventory" class="tab-content">
+            <div class="iframe-container">
+                <iframe src="inventory-interactive.html" title="Inventory Forecast"></iframe>
+            </div>
+        </div>
+
+        <!-- CARGO TAB -->
+        <div id="cargo" class="tab-content">
+            <div class="iframe-container">
+                <iframe src="cargo-tracking.html" title="Cargo Tracking"></iframe>
+            </div>
+        </div>
+
+        <!-- PERSONNEL TAB -->
+        <div id="personnel" class="tab-content">
+            <div class="iframe-container">
+                <iframe src="personnel-parties.html" title="Personnel & Field Parties"></iframe>
+            </div>
+        </div>
+
+        <!-- EXPEDITION TAB -->
+        <div id="expedition" class="tab-content">
+            <div class="iframe-container">
+                <iframe src="expedition-planning.html" title="Expedition Planning"></iframe>
+            </div>
+        </div>
+
+        <!-- EMERGENCY TAB -->
+        <div id="emergency" class="tab-content">
+            <div class="iframe-container">
+                <iframe src="emergency-response.html" title="Emergency Response"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName, buttonEl) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Deactivate all buttons
+            document.querySelectorAll('.tab-button').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Activate clicked button (if called from button click)
+            if (buttonEl) {
+                buttonEl.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
