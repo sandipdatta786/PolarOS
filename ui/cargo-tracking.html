@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolarOS — Cargo Tracking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item-content {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item-content:hover {
+            border-color: rgba(71, 85, 105, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .timeline-item-content.hazard {
+            border: 2px solid #ef4444;
+            background: rgba(127, 29, 29, 0.2);
+        }
+
+        .timeline-item-content.alert {
+            border: 2px solid #f59e0b;
+            background: rgba(120, 53, 15, 0.2);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 1.5rem;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #3b82f6;
+            border: 3px solid #0f172a;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .timeline-item-content.hazard ~ .timeline-dot,
+        .timeline-item-content.hazard .timeline-dot {
+            background: #ef4444;
+        }
+
+        .timeline-item-content.alert ~ .timeline-dot,
+        .timeline-item-content.alert .timeline-dot {
+            background: #f59e0b;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item-content {
+                margin-left: 60px;
+            }
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        .event-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid #3b82f6;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #93c5fd;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-badge.hazard {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #fca5a5;
+        }
+
+        .event-badge.alert {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: #f59e0b;
+            color: #fed7aa;
+        }
+
+        .event-time {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            font-family: 'Monaco', monospace;
+        }
+
+        .event-location {
+            font-weight: 600;
+            color: #e2e8f0;
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .event-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .detail-item {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 0.75rem;
+            border-radius: 4px;
+            border-left: 2px solid #3b82f6;
+        }
+
+        .detail-label {
+            color: #94a3b8;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .detail-value {
+            color: #e2e8f0;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .compliance-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border: 2px solid #ef4444;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .compliance-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .compliance-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fca5a5;
+            margin-bottom: 0.5rem;
+        }
+
+        .compliance-text {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .late-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fca5a5;
+        }
+
+        .status-chip {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid #22c55e;
+            border-radius: 9999px;
+            font-weight: 600;
+            color: #86efac;
+            font-size: 0.875rem;
+        }
+
+        .status-chip.location {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            color: #93c5fd;
+        }
+
+        .hazard-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            border-radius: 6px;
+            color: #fca5a5;
+            font-weight: 600;
+            font-size: 0.875rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .map-container {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .map-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .map-location {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid #3b82f6;
+            border-radius: 8px;
+            padding: 1rem;
+            min-width: 120px;
+            font-weight: 600;
+        }
+
+        .map-arrow {
+            font-size: 1.5rem;
+            color: #3b82f6;
+        }
+
+        .compliance-check {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .compliance-check.fail {
+            border-color: #ef4444;
+            background: rgba(127, 29, 29, 0.2);
+        }
+
+        .compliance-check.fail strong {
+            color: #fca5a5;
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-4xl mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-5xl font-bold mb-2">📦 Cargo Tracking</h1>
+            <p class="text-slate-400">Complete custody chain with hazard compliance checks</p>
+        </div>
+
+        <!-- Crate Overview -->
+        <div class="bg-slate-700 bg-opacity-50 rounded-lg p-6 mb-8 border border-slate-600">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h2 class="text-3xl font-bold text-white">Crate CR-0005</h2>
+                    <p class="text-slate-400 mt-2">Content: Industrial batteries (UN1202 Class 3)</p>
+                </div>
+                <div class="flex gap-2">
+                    <span class="hazard-tag">🚨 HAZARDOUS</span>
+                    <span class="status-chip location">Currently at MAITRI</span>
+                </div>
+            </div>
+
+            <!-- Journey Map -->
+            <div class="map-container">
+                <p class="text-slate-400 text-sm mb-4">JOURNEY MAP (10 Oct 2026 → 28 Dec 2026)</p>
+                <div class="map-flow">
+                    <div class="map-location">🏭 GOA<br><span class="text-xs text-slate-400">Packed</span></div>
+                    <div class="map-arrow">→</div>
+                    <div class="map-location">📍 MUMBAI<br><span class="text-xs text-slate-400">Port</span></div>
+                    <div class="map-arrow">→</div>
+                    <div class="map-location">🚢 VESSEL<br><span class="text-xs text-slate-400">Ship</span></div>
+                    <div class="map-arrow">→</div>
+                    <div class="map-location" style="background: rgba(34, 197, 94, 0.2); border-color: #22c55e; color: #86efac;">❄️ MAITRI<br><span class="text-xs text-slate-400">Arrived</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRITICAL: Compliance Issue -->
+        <div class="compliance-box">
+            <div class="compliance-icon">⚠️</div>
+            <div class="compliance-title">Hazardous Goods Declared Late</div>
+            <div class="compliance-text">
+                This crate was <strong>packed 10 October</strong> but hazard wasn't declared until <strong>19 October</strong> — <strong>9 days later</strong>, after the crate had already left Goa and was in transit.
+                <br><br>
+                IMDG shipping regulations require dangerous goods paperwork to travel with the cargo from the moment it's packed. A declaration filed 223 hours after packing is a compliance violation.
+            </div>
+            <div>
+                <span style="font-size: 1.25rem;">Declared <span class="late-amount">223 hours late</span></span>
+            </div>
+            <div class="compliance-check fail" style="margin-top: 1.5rem;">
+                <strong>⚠️ VIOLATION:</strong> Hazard declared after crate left origin. In the paper process, this gap would go unnoticed. Our system caught it through manifest audit and flagged it immediately.
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <h2 class="text-2xl font-bold mb-6 mt-8">📍 Complete Custody Chain</h2>
+        <div class="timeline">
+            <!-- Step 1: Packed -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-item-content">
+                    <span class="event-badge">CRATE_PACKED</span>
+                    <div class="event-time">10 Oct 2026 at 08:35 UTC</div>
+                    <div class="event-location">GOA (Origin)</div>
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Content</div>
+                            <div class="detail-value">Batteries</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Recorded By</div>
+                            <div class="detail-value">GOA (Packing)</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Hours Since Pack</div>
+                            <div class="detail-value">0 hours</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: HAZARD DECLARED (LATE) -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-item-content hazard">
+                    <span class="event-badge hazard">⚠️ HAZARD_DECLARED</span>
+                    <div class="event-time">19 Oct 2026 at 15:20 UTC</div>
+                    <div class="event-location">GOA (Late declaration)</div>
+                    <div class="event-details">
+                        <div class="detail-item" style="border-left-color: #ef4444;">
+                            <div class="detail-label">UN Number</div>
+                            <div class="detail-value" style="color: #fca5a5;">UN1202</div>
+                        </div>
+                        <div class="detail-item" style="border-left-color: #ef4444;">
+                            <div class="detail-label">Class</div>
+                            <div class="detail-value" style="color: #fca5a5;">Class 3 (Flammable)</div>
+                        </div>
+                        <div class="detail-item" style="border-left-color: #ef4444;">
+                            <div class="detail-label">Hours Since Pack</div>
+                            <div class="detail-value" style="color: #fca5a5;">223 hours (9.3 days!)</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; color: #fca5a5; font-size: 0.9rem;">
+                        ⚠️ Crate had already left Goa by this time. Compliance violation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 3: ALERT -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-item-content alert">
+                    <span class="event-badge alert">ALERT_RAISED</span>
+                    <div class="event-time">19 Oct 2026 at 15:25 UTC</div>
+                    <div class="event-location">GOA (Automated)</div>
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Alert Type</div>
+                            <div class="detail-value">Dangerous goods declared too late</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Trigger</div>
+                            <div class="detail-value">Manifest audit</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Hours Since Pack</div>
+                            <div class="detail-value">223 hours</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; color: #fed7aa; font-size: 0.9rem;">
+                        System automatically detected the violation and raised an alert. In the paper process, nobody would know until arrival.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 4: Scanned at GOA -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-item-content">
+                    <span class="event-badge">CRATE_SCANNED</span>
+                    <div class="event-time">20 Oct 2026 at 10:00 UTC</div>
+                    <div class="event-location">GOA (Port)</div>
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Scanner</div>
+                            <div class="detail-value">GOA_SCAN_1</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Recorded By</div>
+                            <div class="detail-value">GOA</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Hours Since Pack</div>
+                            <div class="detail-value">241 hours</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Mumbai -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-item-content">
+                    <span class="event-badge">CUSTODY_TRANSFERRED</span>
+                    <div class="event-time">22 Oct 2026 at 11:11 UTC</div>
+                    <div class="event-location">MUMBAI (Port)</div>
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Handed To</div>
+                            <div class="detail-value">MUMBAI_STORE</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Recorded By</div>
+                            <div class="detail-value">GOA</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Hours Since Pack</div>
+                            <div class="detail-value">291 hours</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Vessel -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-item-content">
+                    <span class="event-badge">CUSTODY_TRANSFERRED</span>
+                    <div class="event-time">14 Nov 2026 at 13:33 UTC</div>
+                    <div class="event-location">VESSEL (Ship)</div>
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Handed To</div>
+                            <div class="detail-value">VESSEL_STORE</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Recorded By</div>
+                            <div class="detail-value">VESSEL</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Hours Since Pack</div>
+                            <div class="detail-value">845 hours (35 days)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7: Maitri Scanned -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-item-content">
+                    <span class="event-badge">CRATE_SCANNED</span>
+                    <div class="event-time">27 Dec 2026 at 14:44 UTC</div>
+                    <div class="event-location">MAITRI (Station)</div>
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Scanner</div>
+                            <div class="detail-value">MAITRI_SCAN_2</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Recorded By</div>
+                            <div class="detail-value">MAITRI</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Hours Since Pack</div>
+                            <div class="detail-value">1,878 hours (78 days)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 8: Maitri Stored -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-item-content">
+                    <span class="event-badge">CUSTODY_TRANSFERRED</span>
+                    <div class="event-time">28 Dec 2026 at 15:55 UTC</div>
+                    <div class="event-location">MAITRI (Storage) — FINAL</div>
+                    <div class="event-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Handed To</div>
+                            <div class="detail-value">MAITRI_STORE</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Recorded By</div>
+                            <div class="detail-value">MAITRI</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Total Journey</div>
+                            <div class="detail-value">1,903 hours (79 days)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why This Matters -->
+        <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 1.5rem; margin: 2rem 0;">
+            <h3 class="text-xl font-bold text-white mb-3">💡 Why This Module Matters</h3>
+            <ul class="space-y-2 text-slate-300">
+                <li><strong>Accountability:</strong> Every handover is recorded. Nobody can claim "I don't know where it went."</li>
+                <li><strong>Compliance:</strong> Automated checks flag violations (like late hazard declaration) instantly.</li>
+                <li><strong>Traceability:</strong> Any question about this crate — where is it, who touched it, what's in it — is answered in seconds.</li>
+                <li><strong>Offline:</strong> Scans work even when the satellite link is down. Events sync when the link returns.</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-slate-400 text-sm mt-12 pb-8">
+            <p>All data is from <code class="bg-slate-800 px-2 py-1 rounded">season.db</code> queries.</p>
+            <p class="mt-2 text-xs">Run it yourself: <code class="bg-slate-800 px-2 py-1 rounded">sqlite3 season.db ".param set :crate_id 'CR-0005'" ".read q_crate_trace.sql"</code></p>
+        </div>
+    </div>
+</body>
+</html>
